@@ -1,0 +1,31 @@
+.regitrations
+  %h2
+    Edit #{resource_name.to_s.humanize}
+  = bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
+    = devise_error_messages!
+    
+    .fileinput.fileinput-new{"data-provides" => "fileinput"}
+      .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+      %div
+        %span.btn.btn-default.btn-file
+          %span.fileinput-new Select image
+          %span.fileinput-exists Change
+          %input{id: "user_avatar", name: "user[avatar]", :type => "file"}/
+        %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Remove
+    
+    = f.text_field :name
+    
+    = f.email_field :email
+    
+    = f.text_area :about_me, :size => '10x5'
+
+    = f.password_field :password
+    
+    = f.password_field :password_confirmation
+    
+    = f.password_field :current_password
+    
+    = f.submit "Update"
+
+  %br
+  = link_to "Back", :back

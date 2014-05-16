@@ -1,0 +1,11 @@
+development:
+  sessions:
+    default:
+      database: cado_development
+      hosts:
+        - localhost:27017
+
+production:
+  sessions:
+    default:
+      uri: 'mongodb://gagoit:gagoit1307@ds031978.mongolab.com:31978/gagoit_documents'

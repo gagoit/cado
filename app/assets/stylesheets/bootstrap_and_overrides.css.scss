@@ -1,0 +1,32 @@
+body { 
+  padding-top: 60px;
+}
+
+.navbar .user {
+  float: right;
+}
+.row {
+	margin-left: 0px !important;
+}
+
+.alert .close { 
+  top: 0;
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.container {
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.nav.bs-sidenav {
+  li.active{
+    background: gainsboro;
+  }
+}

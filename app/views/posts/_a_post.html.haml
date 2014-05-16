@@ -1,0 +1,23 @@
+.post
+  %h2
+    - if in_list
+      = link_to post.title, post, :target => 'blank'
+    - else
+      = post.title
+  %p
+    %i.fa.fa-clock-o
+    Posted on
+    = post.created_at.strftime("%H:%M on %B %d, %Y")
+    by
+    %a{:href => "#"}
+      = post.created_by.try(:name)
+
+  %br
+
+  .body
+    = raw post.body
+
+  %hr
+    / the comments
+    .comments
+      = render :partial => "comments/comments_for_post", :locals => {:post => post}

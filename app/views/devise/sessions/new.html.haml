@@ -1,0 +1,19 @@
+.login
+  %h2 Login
+
+  = bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| 
+    = f.email_field :email, :autofocus => true 
+    
+    = f.password_field :password
+
+    - if devise_mapping.rememberable?
+      = f.check_box :remember_me
+        
+    = f.submit "Login" 
+
+  .devise-links
+    = render :partial => "devise/shared/links"
+
+  %br
+  
+  = render :partial => 'shared/social_networks', :locals => {text: "Sign up with:"}

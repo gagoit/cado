@@ -1,0 +1,14 @@
+%h2
+  Edit Profile
+
+= bootstrap_form_for @user, :html => { :method => :put, :multipart => true } do |f|
+  
+  = f.text_field :name
+  
+  = f.email_field :email
+
+  = f.text_area :about_me, :size => '10x5'
+
+  = f.submit "Update"
+
+= link_to "Back", :back
