@@ -6,5 +6,11 @@
         - @match.errors.full_messages.each do |msg|
           %li= msg
 
+  = f.text_field :name
+
+  = f.text_area :short_description, :class => 'tinymce', :rows => 3
+
+  = f.text_area :description, :class => "tinymce"
+
   .actions
     = f.submit 'Save'

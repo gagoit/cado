@@ -7,10 +7,18 @@
           %li= msg
 
   = f.text_field :name, :autofocus => true 
+  
+  = f.text_area :short_description, :class => 'tinymce', :rows => 3
+  
   = f.text_area :description, :class => 'tinymce'
+  
   = f.date_select :start_time
+  
   = f.date_select :end_time
 
-  = f.submit 'Save'
+  = f.select :team_ids, (Team.all.map { |e| [e.name, e.id] }), :multiple => true, :data => { :placeholder => 'Select Team' }
+
+  .actions
+    = f.submit 'Save'
 
 = tinymce

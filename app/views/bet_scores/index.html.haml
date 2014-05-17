@@ -1,0 +1,17 @@
+%h1 Listing bet_scores
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @bet_scores.each do |bet_score|
+    %tr
+      %td= link_to 'Show', bet_score
+      %td= link_to 'Edit', edit_bet_score_path(bet_score)
+      %td= link_to 'Destroy', bet_score, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Bet score', new_bet_score_path

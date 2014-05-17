@@ -21,6 +21,14 @@ en:
     models:
       post: Post
       comment: Comment
+      tournament: Tournament
+      tournament_photo: Tournament Photo
+      match: Match
+      match_photo: Match Photo
+      team: Team
+      team_photo: Team Photo
+      bet_score: Bet Score
+      standing: Standing
 
     attributes: &model_attribute_tranlations
       post:

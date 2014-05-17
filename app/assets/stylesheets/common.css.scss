@@ -1,0 +1,21 @@
+.slide.match_photos, .slide.team_photos, .slide.tournament_photos {
+  &.small {
+    width: 70px;
+    height: 70px;
+  }
+
+  &.large {
+    width: 1024px;
+    height: 1024px;
+  }
+
+  &.medium {
+    width: 250px;
+    height: 250px;
+  }
+
+  &.thumb {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -15,4 +15,5 @@ class Photo
 
   attr_accessible :image
 
+  validates :image , :presence => true
 end

@@ -1,0 +1,7 @@
+%p Tournament: #{link_to @tournament_photo.tournament.name, @tournament_photo.tournament}
+
+%img.img-responsive{:src => @tournament_photo.image.url}
+
+= link_to 'Edit', edit_tournament_photo_path(@tournament_photo)
+\|
+= link_to 'Back', tournament_photos_path

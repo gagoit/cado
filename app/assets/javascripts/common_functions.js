@@ -44,3 +44,63 @@ var Gagoit = {
     return false;
   }
 }
+
+
+/**
+* Chosen tap function
+**/
+var chosen_tap_fun = function(){
+  var select = $(this), span;
+
+  function set_selected_data(){
+    if (!span) return;
+
+    var selected = select.val();
+    if(selected && selected[0] == ""){
+      selected.splice(0,1);
+    }
+
+    span.data('selected', selected);
+
+    return selected;
+  }
+
+  set_selected_data();
+
+  var should_hide = !select.is(':visible');
+  var chosen = select.chosen().next();
+
+  if (should_hide && !select.parents('.form-dialog').length)
+    chosen.hide();
+
+  select.parents('form').on({
+    statechange: function(ev, state){
+      if (state)
+        chosen.show();
+      else
+        chosen.hide();
+    },
+
+    cancel:function(){
+      var selected = span.data('selected');
+
+      select.val(selected).trigger('liszt:updated');
+    },
+
+    'ajax:success':function(ev, result){
+      try{
+        if (result.errors && result.errors_size > 0){
+
+        }else{
+          var selected = set_selected_data();
+
+          if (selected)
+            span.text(selected.join(', '));
+        }
+      }catch(error){
+
+      }
+    },
+  });
+  
+}

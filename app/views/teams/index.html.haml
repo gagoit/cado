@@ -1,16 +1,11 @@
 %h1 Listing teams
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @teams.each do |team|
-    %tr
-      %td= link_to 'Show', team
-      %td= link_to 'Edit', edit_team_path(team)
-      %td= link_to 'Destroy', team, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- @teams.each do |team|
+  = render :partial => "teams/team", :locals => {:team => team}
+  
+  = link_to 'Show', team
+  = link_to 'Edit', edit_team_path(team)
+  = link_to 'Destroy', team, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

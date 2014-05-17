@@ -1,0 +1,21 @@
+= bootstrap_form_for @tournament_photo, :html => { :multipart => true } do |f|
+  - if @tournament_photo.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@tournament_photo.errors.count, "error")} prohibited this tournament_photo from being saved:"
+      %ul
+        - @tournament_photo.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.select :tournament_id, (Tournament.all.map { |e| [e.name, e.id] }), :include_blank => false
+
+  .fileinput.fileinput-new{"data-provides" => "fileinput"}
+    .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+    %div
+      %span.btn.btn-default.btn-file
+        %span.fileinput-new Select image
+        %span.fileinput-exists Change
+        %input{id: "tournament_photo_image", name: "tournament_photo[image]", :type => "file"}/
+      %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Remove
+  
+  .actions
+    = f.submit 'Save'

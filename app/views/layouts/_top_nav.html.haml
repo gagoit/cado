@@ -14,8 +14,17 @@
         %li{:class => (params[:controller] == "static_pages" && params[:action] == "about" ? "active" : "")}
           %a{:href => about_path} About
       
-        %li{:class => (params[:controller] == "posts"  ? "active" : "")}
+        %li{:class => nav_class("post")}
           %a{:href => posts_path} Posts
+
+        %li{:class => nav_class("tournament")}
+          %a{:href => tournaments_path} Tournaments
+
+        %li{:class => nav_class("match")}
+          %a{:href => matches_path} Matches
+
+        %li{:class => nav_class("team")}
+          %a{:href => teams_path} Teams
         
         - if user_signed_in?
           %li.dropdown.user-info

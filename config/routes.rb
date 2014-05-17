@@ -1,5 +1,8 @@
 GagoitDocuments::Application.routes.draw do
 
+  resources :bet_scores
+
+
   resources :posts do
     resources :comments
 
@@ -21,12 +24,20 @@ GagoitDocuments::Application.routes.draw do
   match "/cat_tuong", to: "static_pages#cat_tuong"
 
   resources :tournaments do
-    resources :matches do
-      resources :bet_scores
-    end
 
-    resources :teams
   end
+
+  resources :matches do
+    resources :bet_scores
+  end
+
+  resources :teams
+
+  resources :tournament_photos
+
+  resources :team_photos
+
+  resources :match_photos
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

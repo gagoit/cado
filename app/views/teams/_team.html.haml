@@ -1,0 +1,15 @@
+.team
+  .row
+    .col-md-3
+      = render :partial => "shared/slide", :locals => {:class_name => "team_photos medium", :images => team.team_photos.map { |e| e.image.url(:medium) }}
+
+    .col-md-9
+      %h2 #{link_to team.name, team}
+      .short_description
+        = raw team.short_description
+
+  .row
+    .col-lg-12
+      %h2.page-header Players
+
+      %p #{team.players}

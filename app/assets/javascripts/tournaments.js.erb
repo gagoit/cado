@@ -1,0 +1,25 @@
+/**
+* Include Tournament module
+**/
+var Tournament = {
+  /**
+  * Init
+  **/
+  init: function(){
+    this.init_events();
+  },
+
+  /**
+  * Init Events
+  **/
+  init_events: function(){
+    var self = this;
+    
+    $("#tournament_team_ids").chosen();
+  }
+  
+}
+
+$(function() {
+  Tournament.init();
+});

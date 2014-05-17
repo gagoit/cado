@@ -1,0 +1,21 @@
+= bootstrap_form_for @match_photo, :html => { :multipart => true } do |f|
+  - if @match_photo.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@match_photo.errors.count, "error")} prohibited this match_photo from being saved:"
+      %ul
+        - @match_photo.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.select :match_id, (Match.all.map { |e| [e.name, e.id] }), :include_blank => false
+
+  .fileinput.fileinput-new{"data-provides" => "fileinput"}
+    .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+    %div
+      %span.btn.btn-default.btn-file
+        %span.fileinput-new Select image
+        %span.fileinput-exists Change
+        %input{id: "match_photo_image", name: "match_photo[image]", :type => "file"}/
+      %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Remove
+
+  .actions
+    = f.submit 'Save'

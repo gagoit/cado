@@ -1,4 +1,4 @@
-class FriendShip
+class Friendship
   include Mongoid::Document
   include Mongoid::Timestamps
   

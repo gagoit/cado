@@ -1,0 +1,17 @@
+%h1 Listing tournament_photos
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @tournament_photos.each do |tournament_photo|
+    %tr
+      %td= link_to 'Show', tournament_photo
+      %td= link_to 'Edit', edit_tournament_photo_path(tournament_photo)
+      %td= link_to 'Destroy', tournament_photo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Tournament photo', new_tournament_photo_path

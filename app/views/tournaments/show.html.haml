@@ -1,6 +1,27 @@
-%p#notice= notice
+.tournament
+  .row
+    %h2 #{@tournament.name}
+    
+    .col-md-3
+    .col-md-6
+      = render :partial => "shared/slide", :locals => {:class_name => "tournament_photos", :images => @tournament.tournament_photos.map { |e| e.image.url(:medium) }}
+    .col-md-3
 
+  .row
+    .description
+      = raw @tournament.description
 
+  - if @tournament.teams.length > 0
+    .row
+      .col-lg-12
+        %h2.page-header Teams
+
+      - @tournament.teams.each do |team|
+        .col-sm-4
+          = render :partial => "teams/team", :locals => {team: team}
+    
+= link_to 'Add Photos', new_tournament_photo_path(tournament_id: @tournament.id)
+\|
 = link_to 'Edit', edit_tournament_path(@tournament)
 \|
 = link_to 'Back', tournaments_path

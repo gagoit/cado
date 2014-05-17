@@ -5,8 +5,11 @@ class Team
 
   field :name, type: String
   field :players, type: String
+  field :description, type: String
 
-  attr_accessible :name, :players
+  field :short_description, type: String
+
+  attr_accessible :name, :players, :description, :short_description
 
   has_many :team_photos
 
@@ -15,8 +18,14 @@ class Team
 
   has_many :standings
 
+  has_and_belongs_to_many :tournaments
+
   searchable do
     text :name
     text :players
+  end
+
+  def main_image
+    team_photos.first
   end
 end

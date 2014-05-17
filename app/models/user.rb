@@ -67,7 +67,7 @@ class User
   has_many :posts
   has_many :comments
 
-  #references_and_referenced_in_many :friendships, :autosave => true
+  has_many :friendships
 
   ##
   # Dynamically create find_for_facebook_oauth and find_for_twitter_oauth methods

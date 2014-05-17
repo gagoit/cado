@@ -12,4 +12,22 @@ module ApplicationHelper
 
     will_paginate collection, :param_name => (options[:param_name] || "page")
   end
+
+  def collect_options_from_hash(hash)
+    hash.collect { |a,b| 
+      if b.is_a?(Symbol)
+        [b.to_s.titleize, a]
+      else 
+        [b, a]
+      end
+    }
+  end
+
+  def nav_class(name)
+    if params[:controller] == "#{name.pluralize}" || params[:controller] == "#{name}_photos"
+      "active"
+    else
+      ""
+    end
+  end
 end

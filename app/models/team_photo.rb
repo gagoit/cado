@@ -5,4 +5,6 @@ class TeamPhoto < Photo
   attr_accessible :main_image, :team, :team_id
 
   belongs_to :team
+
+  validates :team_id , :presence => true
 end

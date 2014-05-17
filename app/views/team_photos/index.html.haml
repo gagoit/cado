@@ -1,0 +1,17 @@
+%h1 Listing team_photos
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @team_photos.each do |team_photo|
+    %tr
+      %td= link_to 'Show', team_photo
+      %td= link_to 'Edit', edit_team_photo_path(team_photo)
+      %td= link_to 'Destroy', team_photo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Team photo', new_team_photo_path

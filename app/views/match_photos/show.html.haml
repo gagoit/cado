@@ -1,0 +1,7 @@
+%p Match: #{@match_photo.match.name}
+
+%img.img-responsive{:src => @match_photo.image.url}
+
+= link_to 'Edit', edit_match_photo_path(@match_photo)
+\|
+= link_to 'Back', match_photos_path

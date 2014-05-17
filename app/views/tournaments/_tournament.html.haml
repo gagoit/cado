@@ -1,0 +1,17 @@
+.tournament
+  .row
+    .col-md-3
+      = render :partial => "shared/slide", :locals => {:class_name => "tournament_photos medium", :images => tournament.tournament_photos.map { |e| e.image.url(:medium) }}
+    .col-md-9
+      %h2 #{link_to tournament.name, tournament}
+      .short_description
+        = raw tournament.short_description
+
+  - if tournament.teams.length > 0
+    .row
+      .col-lg-12
+        %h2.page-header Teams
+
+      - tournament.teams.each do |team|
+        .col-sm-4
+          = render :partial => "teams/team", :locals => {team: team}
