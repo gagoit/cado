@@ -16,7 +16,7 @@
   
   = f.date_select :end_time
 
-  = f.select :team_ids, (Team.all.map { |e| [e.name, e.id] }), :multiple => true, :data => { :placeholder => 'Select Team' }
+  = f.select :team_ids, (Team.all.map { |e| [e.name, e.id] }), {}, :multiple => true, :data => { :placeholder => 'Select Team' }
 
   .actions
     = f.submit 'Save'

@@ -1,4 +1,4 @@
-%p Match: #{@match_photo.match.name}
+%p Match: #{link_to @match_photo.match.name, @match_photo.match}
 
 %img.img-responsive{:src => @match_photo.image.url}
 

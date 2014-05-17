@@ -4,7 +4,7 @@
       = render :partial => "shared/slide", :locals => {:class_name => "match_photos", :images => @match.match_photos.map { |e| e.image.url(:small) }}
 
     .col-md-6
-      %h2 #{@match}
+      %h2 #{@match.name}
       .description
         = raw @match.description
 

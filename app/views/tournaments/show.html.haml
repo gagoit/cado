@@ -14,11 +14,14 @@
   - if @tournament.teams.length > 0
     .row
       .col-lg-12
-        %h2.page-header Teams
+        %h2.page-header Teams:
 
       - @tournament.teams.each do |team|
         .col-sm-4
-          = render :partial => "teams/team", :locals => {team: team}
+          %img.img-responsive{:src => team.main_image.try(:image).try(:url, :medium)}
+            %h2 #{link_to team.name, team}
+            .short_description
+              = raw team.short_description
     
 = link_to 'Add Photos', new_tournament_photo_path(tournament_id: @tournament.id)
 \|

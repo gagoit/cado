@@ -11,7 +11,7 @@ class Tournament
 
   field :short_description, type: String
 
-  attr_accessible :name, :start_time, :end_time, :description, :short_description
+  attr_accessible :name, :start_time, :end_time, :description, :short_description, :team_ids, :teams
 
   has_many :matches
   has_many :standings

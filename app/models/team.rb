@@ -9,7 +9,7 @@ class Team
 
   field :short_description, type: String
 
-  attr_accessible :name, :players, :description, :short_description
+  attr_accessible :name, :players, :description, :short_description, :tournaments, :tournament_ids
 
   has_many :team_photos
 
