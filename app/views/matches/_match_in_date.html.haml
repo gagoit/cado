@@ -1,0 +1,38 @@
+.col-xs-12.clear-grid
+  #300186456.mu.fixture
+    .mu-i
+      .mu-i-datetime
+        #{match.start_time.strftime("%d %b, %Y - %H:%M")}
+        %span.wrap-localtime Local time
+      .mu-i-date #{match.start_time.strftime("%d %b, %Y")}
+      .mu-i-matchnum Match #{match.number}
+      .mu-i-group Group #{match.group}
+      / .mu-i-location
+      /   .mu-i-stadium Arena de Sao Paulo
+      /   .mu-i-venue Sao Paulo
+    .mu-day
+      %span.t-day #{match.start_time.strftime("%d")}
+      %span.t-month #{match.start_time.strftime("%b")}
+    .mu-m
+      .t.home
+        .t-i.i-4
+          %span.t-i-wrap
+            %img.BRA.i-4-flag.flag{:alt => "#{match.playera.name}", :src => "http://img.fifa.com/images/flags/4/bra.png"}/
+        .t-n
+          %span.t-nText #{match.playera.name}
+          %span.t-nTri #{match.playera.short_name}
+      .t.away
+        .t-i.i-4
+          %span.t-i-wrap
+            %img.CRO.i-4-flag.flag{:alt => "#{match.playerb.name}", :src => "http://img.fifa.com/images/flags/4/cro.png"}/
+        .t-n
+          %span.t-nText #{match.playerb.name}
+          %span.t-nTri #{match.playerb.short_name}
+      .s
+        .s-fixture
+          .s-status             
+          .s-status-abbr             
+          .s-score.s-date-HHmm{"data-daymonthutc" => "#{match.start_time.strftime("%d%m")}", "data-mytime" => "#{converthm(match.start_time)[:mytime]}", "data-timelocal" => "#{converthm(match.start_time)[:local]}", "data-timeutc" => "#{converthm(match.start_time)[:utc]}"}
+            %span.s-scoreText #{converthm(match.start_time)[:local]}}
+      .mu-reasonwin         
+      .mu-reasonwin-abbr

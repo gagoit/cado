@@ -1,0 +1,17 @@
+%h1 Listing Standings
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @standings.each do |standing|
+    %tr
+      %td= link_to 'Show', standing
+      %td= link_to 'Edit', edit_standing_path(standing)
+      %td= link_to 'Destroy', standing, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Standing', new_tournament_standing_path(@tournament)

@@ -7,7 +7,11 @@
       .short_description
         = raw tournament.short_description
 
-  - if tournament.teams.length > 0
+      .time
+        %p Time: From #{tournament.start_time.strftime("%B %d, %Y")} to #{tournament.end_time.strftime("%B %d, %Y")}
+
+
+  - if show_teams && tournament.teams.length > 0
     .row
       .col-lg-12
         %h2.page-header Teams:

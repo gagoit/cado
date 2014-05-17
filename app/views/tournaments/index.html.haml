@@ -1,7 +1,23 @@
-%h1 Listing tournaments
+- if @current_tournaments.length > 0
+  .current-tournaments
+    %h1.page-header Current Tournaments
 
-- @tournaments.each do |tournament|
-  = render :partial => "tournament", :locals => {tournament: tournament}
+    - @current_tournaments.each do |tournament|
+      = render :partial => "tournament", :locals => {tournament: tournament, show_teams: false}
+
+- if @upcomming_tournaments.length > 0
+  .upcomming-tournaments
+    %h1.page-header Upcomming Tournaments
+
+    - @upcomming_tournaments.each do |tournament|
+      = render :partial => "tournament", :locals => {tournament: tournament, show_teams: false}
+
+- if @past_tournaments.length > 0
+  .past-tournaments
+    %h1.page-header Old Tournaments
+
+    - @past_tournaments.each do |tournament|
+      = render :partial => "tournament", :locals => {tournament: tournament, show_teams: false}
 
 %br
 

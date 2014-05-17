@@ -1,8 +1,5 @@
 GagoitDocuments::Application.routes.draw do
 
-  resources :bet_scores
-
-
   resources :posts do
     resources :comments
 
@@ -24,7 +21,7 @@ GagoitDocuments::Application.routes.draw do
   match "/cat_tuong", to: "static_pages#cat_tuong"
 
   resources :tournaments do
-
+    resources :standings
   end
 
   resources :matches do

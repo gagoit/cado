@@ -30,4 +30,24 @@ module ApplicationHelper
       ""
     end
   end
+
+  def converttime(time)
+    {
+      mytime: time,
+      local: time,
+      utc: time
+    }
+  end
+
+  ##
+  # HH:MM
+  ##
+  def converthm(time)
+    new_time = converttime(time)
+    {
+      mytime: new_time[:mytime].strftime("%H:%M"),
+      local: new_time[:local].strftime("%H:%M"),
+      utc: new_time[:utc].strftime("%H:%M")
+    }
+  end
 end

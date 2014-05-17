@@ -1,16 +1,9 @@
-%h1 Listing matches
+%h1 Matches
 
-%table
-  %tr
-    %th
-    %th
-    %th
+= render :partial => "ex_matches"
 
-  - @matches.each do |match|
-    %tr
-      %td= link_to 'Show', match
-      %td= link_to 'Edit', edit_match_path(match)
-      %td= link_to 'Destroy', match, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- @matches_in_dates.each do |matches|
+  = render :partial => "ex_matches_in_date", :locals => {:matches => matches}
 
 %br
 

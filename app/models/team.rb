@@ -6,10 +6,12 @@ class Team
   field :name, type: String
   field :players, type: String
   field :description, type: String
+  field :short_name, type: String
 
   field :short_description, type: String
 
-  attr_accessible :name, :players, :description, :short_description, :tournaments, :tournament_ids
+  attr_accessible :name, :players, :description, :short_description, :tournaments, 
+    :tournament_ids, :short_name
 
   has_many :team_photos
 
@@ -19,6 +21,8 @@ class Team
   has_many :standings
 
   has_and_belongs_to_many :tournaments
+
+  validates :name, :description, :short_description, :short_name , :presence => true
 
   searchable do
     text :name

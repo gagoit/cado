@@ -3,6 +3,9 @@ class TournamentsController < ApplicationController
   # GET /tournaments.json
   def index
     @tournaments = Tournament.all
+    @current_tournaments = Tournament.current
+    @upcomming_tournaments = Tournament.upcomming
+    @past_tournaments = Tournament.in_past
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,7 +1,26 @@
 .tournament
   .row
-    %h2 #{@tournament.name}
+    %h2 
+      #{@tournament.name}
+      %small From #{@tournament.start_time.strftime("%B %d, %Y")} to #{@tournament.end_time.strftime("%B %d, %Y")}
+
+    .nav-wrap
+      %ul.nav.nav-pills.lev2.items3
+        %li.menu-2-matches.first
+          %a{:href => matches_path(:tournament_id => @tournament.id), :title => "Matches"}
+            %span Matches
+            %span.glyphicon.glyphicon-search
+        %li.menu-2-teams
+          %a{:href => teams_path(:tournament_id => @tournament.id), :title => "Teams"}
+            %span Teams
+            %span.glyphicon.glyphicon-search
+        %li.menu-2-standings
+          %a{:href => tournament_standings_path(:tournament_id => @tournament.id), :title => "Standings"}
+            %span Standings
+            %span.glyphicon.glyphicon-search
     
+    %br
+
     .col-md-3
     .col-md-6
       = render :partial => "shared/slide", :locals => {:class_name => "tournament_photos", :images => @tournament.tournament_photos.map { |e| e.image.url(:medium) }}
@@ -13,8 +32,7 @@
 
   - if @tournament.teams.length > 0
     .row
-      .col-lg-12
-        %h2.page-header Teams:
+      %h2 Teams:
 
       - @tournament.teams.each do |team|
         .col-sm-4

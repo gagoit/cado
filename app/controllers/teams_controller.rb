@@ -2,7 +2,11 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
+    if @tournament = Tournament.where(:id => params[:tournament_id]).first
+      @teams = @tournament.teams
+    else
+      @teams = Team.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

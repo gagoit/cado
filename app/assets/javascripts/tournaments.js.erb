@@ -16,6 +16,37 @@ var Tournament = {
     var self = this;
     
     $("#tournament_team_ids").chosen();
+
+    /* Init start time, end time*/
+    var nowTemp = new Date();
+    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+     
+    var start_time = $('#tournament_start_time').datepicker({
+      format:  'dd/mm/yyyy',
+      onRender: function(date) {
+        return date.valueOf() < now.valueOf() ? 'disabled' : '';
+      }
+    }).on('changeDate', function(ev) {
+      if (ev.date.valueOf() > end_time.date.valueOf()) {
+        var newDate = new Date(ev.date);
+        newDate.setDate(newDate.getDate() + 1);
+        end_time.setValue(newDate);
+      }
+      start_time.hide();
+      $('#tournament_end_time')[0].focus();
+    }).data('datepicker');
+
+    var end_time = $('#tournament_end_time').datepicker({
+      format:  'dd/mm/yyyy',
+      onRender: function(date) {
+        return date.valueOf() <= start_time.date.valueOf() ? 'disabled' : '';
+      }
+    }).on('changeDate', function(ev) {
+      end_time.hide();
+    }).data('datepicker');
+
+    Gagoit.disable_edit($("#tournament_end_time"));
+    Gagoit.disable_edit($("#tournament_start_time"));
   }
   
 }

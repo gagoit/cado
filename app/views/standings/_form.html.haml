@@ -1,0 +1,10 @@
+= form_for @standing do |f|
+  - if @standing.errors.any?
+    / #error_explanation
+    /   %h2= "#{pluralize(@standing.errors.count, "error")} prohibited this standing from being saved:"
+    /   %ul
+    /     - @standing.errors.full_messages.each do |msg|
+    /       %li= msg
+
+  .actions
+    = f.submit 'Save'
