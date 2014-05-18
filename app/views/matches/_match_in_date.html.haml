@@ -1,30 +1,39 @@
+- time_converted = converttime(match.start_time)
 .col-xs-12.clear-grid
   #300186456.mu.fixture
     .mu-i
       .mu-i-datetime
-        #{match.start_time.strftime("%d %b, %Y - %H:%M")}
+        #{time_converted[:local].strftime("%d %b, %Y - %H:%M")}
         %span.wrap-localtime Local time
-      .mu-i-date #{match.start_time.strftime("%d %b, %Y")}
+      .mu-i-date #{time_converted[:local].strftime("%d %b, %Y")}
       .mu-i-matchnum Match #{match.number}
       .mu-i-group Group #{match.group}
+
+      - if match.can_bet_score
+        .mu-i-bet-score
+          = link_to "Bet Score", new_match_bet_score_path(match)
+
+      - unless match.result.blank?
+        .mu-i-group Result #{match.result}
+
       / .mu-i-location
       /   .mu-i-stadium Arena de Sao Paulo
       /   .mu-i-venue Sao Paulo
     .mu-day
-      %span.t-day #{match.start_time.strftime("%d")}
-      %span.t-month #{match.start_time.strftime("%b")}
+      %span.t-day #{time_converted[:local].strftime("%d")}
+      %span.t-month #{time_converted[:local].strftime("%b")}
     .mu-m
       .t.home
         .t-i.i-4
           %span.t-i-wrap
-            %img.BRA.i-4-flag.flag{:alt => "#{match.playera.name}", :src => "http://img.fifa.com/images/flags/4/bra.png"}/
+            %img.BRA.i-4-flag.flag{:alt => "#{match.playera.name}", :src => match.playera.main_image.url(:small)}/
         .t-n
           %span.t-nText #{match.playera.name}
           %span.t-nTri #{match.playera.short_name}
       .t.away
         .t-i.i-4
           %span.t-i-wrap
-            %img.CRO.i-4-flag.flag{:alt => "#{match.playerb.name}", :src => "http://img.fifa.com/images/flags/4/cro.png"}/
+            %img.CRO.i-4-flag.flag{:alt => "#{match.playerb.name}", :src => match.playerb.main_image.url(:small)}/
         .t-n
           %span.t-nText #{match.playerb.name}
           %span.t-nTri #{match.playerb.short_name}
@@ -33,6 +42,6 @@
           .s-status             
           .s-status-abbr             
           .s-score.s-date-HHmm{"data-daymonthutc" => "#{match.start_time.strftime("%d%m")}", "data-mytime" => "#{converthm(match.start_time)[:mytime]}", "data-timelocal" => "#{converthm(match.start_time)[:local]}", "data-timeutc" => "#{converthm(match.start_time)[:utc]}"}
-            %span.s-scoreText #{converthm(match.start_time)[:local]}}
+            %span.s-scoreText #{converthm(match.start_time)[:local]}
       .mu-reasonwin         
       .mu-reasonwin-abbr

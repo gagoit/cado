@@ -1,8 +1,14 @@
 - first_match = matches.first
 - if first_match
-  .match-list-date.anchor{"data-title" => "The matches of the 2014 FIFA World Cup Brazil™ - FIFA.com", id: first_match.start_time.strftime("%Y%m%d")}
-    %h3
-      %span.h3-wrap #{first_match.start_time.strftime("%A %d %B, %Y")}
+  .match-list-date.anchor{"data-title" => "The matches of the 2014 FIFA World Cup Brazil™ - FIFA.com", id: date.strftime("%Y%m%d")}
+    - if @tournament
+      %h3
+        %span.h3-wrap #{date.strftime("%A %d %B, %Y")}
+    - else
+      %h3 
+        = first_match.tournament.name
+        %span.small #{date.strftime("%A %d %B, %Y")}
+
 
     .time-converter
       %span.local-time.hidden Change to local time

@@ -8,7 +8,7 @@ class MatchesController < ApplicationController
       @matches = Match.all
     end
 
-    @matches_in_dates = []
+    @matches_in_dates = Match.matches_in_dates(@matches)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -84,6 +84,18 @@ class MatchesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to matches_url }
       format.json { head :no_content }
+    end
+  end
+
+  # GET
+  def bet_scores_in_match
+    @match = Match.find(params[:id])
+
+    @bet_scores = @match.bet_scores.by_user(current_user)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: {match: @match, bet_scores: @bet_scores} }
     end
   end
 end

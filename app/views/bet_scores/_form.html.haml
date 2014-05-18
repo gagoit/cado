@@ -1,10 +1,5 @@
-= form_for @bet_score do |f|
-  - if @bet_score.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@bet_score.errors.count, "error")} prohibited this bet_score from being saved:"
-      %ul
-        - @bet_score.errors.full_messages.each do |msg|
-          %li= msg
+= form_for @bet_score, :url => match_bet_scores_path(@match) do |f|
+  
 
   .actions
     = f.submit 'Save'

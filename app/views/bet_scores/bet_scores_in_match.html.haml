@@ -1,0 +1,23 @@
+.bet-scores-in-match.modal
+  %table
+    %tr
+      %th Match
+      %th Score
+      %th Money
+      %th Created At
+      %th Action
+
+    - @bet_scores.each do |bet_score|
+      %tr
+        %td #{bet_score.match.name}
+        %td #{bet_score.score}
+        %td #{number_to_currency(bet_score.money)}
+        %td #{(bet_score.created_at.localtime).strftime("%b %d, %Y - %H:%M")}
+        %td.action
+          %a.delete{"data-bet-score-id" => bet_score.id}
+            %i.fa.fa-trash-o
+            Delete
+
+  %div.new-bet-score
+    %h1 Create new Bet Score for this match:
+    = render 'form'

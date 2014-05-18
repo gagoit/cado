@@ -203,6 +203,16 @@ line-height: 17px;
 text-transform: uppercase;
 }
 
+.mu .mu-i .mu-i-bet-score {
+  margin-top: 10px;
+
+  a {
+    cursor: pointer;
+    color: #0087e6;
+    font-size: 16px;
+  }
+}
+
 .col-xs-12 .mu .mu-i .mu-i-date, .col-xs-12 .mu .mu-i .mu-i-matchnum, .col-xs-12 .mu .mu-i .mu-i-round {
 display: none !important;
 visibility: hidden !important;

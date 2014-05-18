@@ -1,12 +1,17 @@
-= bootstrap_form_for @team do |f|
-  - if @team.errors.any?
-    / #error_explanation
-    /   %h2= "#{pluralize(@team.errors.count, "error")} prohibited this team from being saved:"
-    /   %ul
-    /     - @team.errors.full_messages.each do |msg|
-    /       %li= msg
+= bootstrap_form_for @team, :html => { :multipart => true } do |f|
 
   = f.text_field :name
+
+  = f.text_field :short_name
+
+  .fileinput.fileinput-new{"data-provides" => "fileinput"}
+    .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+    %div
+      %span.btn.btn-default.btn-file
+        %span.fileinput-new Select image
+        %span.fileinput-exists Change
+        %input{id: "team_main_image", name: "team[main_image]", :type => "file"}/
+      %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Remove
 
   = f.text_area :players, :rows => 3
 

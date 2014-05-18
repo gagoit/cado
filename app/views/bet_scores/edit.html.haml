@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @bet_score
+= link_to 'Show', match_bet_score_path(@match, @bet_score)
 \|
-= link_to 'Back', bet_scores_path
+= link_to 'Back', match_bet_scores_path

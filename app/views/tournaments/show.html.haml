@@ -36,7 +36,7 @@
 
       - @tournament.teams.each do |team|
         .col-sm-4
-          %img.img-responsive{:src => team.main_image.try(:image).try(:url, :medium)}
+          %img.img-responsive{:src => team.try(:main_image).try(:url, :medium)}
             %h2 #{link_to team.name, team}
             .short_description
               = raw team.short_description

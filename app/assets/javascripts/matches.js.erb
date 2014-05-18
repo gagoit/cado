@@ -15,6 +15,37 @@ var Match = {
   init_events: function(){
     var self = this;
     
+    /** Time converter **/
+    $(".time-converter .local-time").click(function(e){
+      self.convert_time_to(this, "mytime", "local");
+    });
+
+    $(".time-converter .my-time").click(function(e){
+      self.convert_time_to(this, "local", "mytime");
+    });
+  },
+
+  /**
+  * Convert time
+  **/
+  convert_time_to: function(btn, from_time, to_time){
+    var matchs_in_date = $(btn).closest(".match-list-date");
+    
+    var time = matchs_in_date.find(".mu-m .s-date-HHmm");
+    var local_time = time.attr("data-timelocal");
+    var mytime = time.attr("data-mytime");
+
+    if (to_time == "local"){
+      time.find(".s-scoreText").text(local_time);
+
+      matchs_in_date.find(".time-converter .my-time").removeClass("hidden");
+      matchs_in_date.find(".time-converter .local-time").addClass("hidden");
+    }else {
+      time.find(".s-scoreText").text(mytime);
+
+      matchs_in_date.find(".time-converter .my-time").addClass("hidden");
+      matchs_in_date.find(".time-converter .local-time").removeClass("hidden");
+    }
     
   }
   

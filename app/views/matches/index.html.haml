@@ -1,9 +1,10 @@
 %h1 Matches
 
-= render :partial => "ex_matches"
+- if @tournament
+  = render :partial => "ex_matches"
 
-- @matches_in_dates.each do |matches|
-  = render :partial => "ex_matches_in_date", :locals => {:matches => matches}
+- @matches_in_dates.keys.each do |date|
+  = render :partial => "ex_matches_in_date", :locals => {:matches => @matches_in_dates[date], date: date}
 
 %br
 

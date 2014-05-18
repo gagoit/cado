@@ -26,6 +26,8 @@ GagoitDocuments::Application.routes.draw do
 
   resources :matches do
     resources :bet_scores
+
+    get 'bet_scores_in_match', on: :member
   end
 
   resources :teams

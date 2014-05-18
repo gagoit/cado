@@ -67,6 +67,7 @@ class TeamsController < ApplicationController
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
         format.json { head :no_content }
       else
+        puts @team.errors.inspect
         format.html { render action: "edit" }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end

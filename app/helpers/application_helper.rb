@@ -33,8 +33,8 @@ module ApplicationHelper
 
   def converttime(time)
     {
-      mytime: time,
-      local: time,
+      mytime: time.localtime,
+      local: time - 3.hours,
       utc: time
     }
   end
