@@ -1,4 +1,5 @@
 class TournamentPhotosController < ApplicationController
+  load_and_authorize_resource :tournament_photo
 
   # GET /tournament_photos
   # GET /tournament_photos.json
@@ -14,7 +15,7 @@ class TournamentPhotosController < ApplicationController
   # GET /tournament_photos/1
   # GET /tournament_photos/1.json
   def show
-    @tournament_photo = TournamentPhoto.find(params[:id])
+    #@tournament_photo = TournamentPhoto.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,7 +36,7 @@ class TournamentPhotosController < ApplicationController
 
   # GET /tournament_photos/1/edit
   def edit
-    @tournament_photo = TournamentPhoto.find(params[:id])
+    #@tournament_photo = TournamentPhoto.find(params[:id])
   end
 
   # POST /tournament_photos
@@ -57,7 +58,7 @@ class TournamentPhotosController < ApplicationController
   # PUT /tournament_photos/1
   # PUT /tournament_photos/1.json
   def update
-    @tournament_photo = TournamentPhoto.find(params[:id])
+    #@tournament_photo = TournamentPhoto.find(params[:id])
 
     respond_to do |format|
       if @tournament_photo.update_attributes(params[:tournament_photo])
@@ -73,7 +74,7 @@ class TournamentPhotosController < ApplicationController
   # DELETE /tournament_photos/1
   # DELETE /tournament_photos/1.json
   def destroy
-    @tournament_photo = TournamentPhoto.find(params[:id])
+    #@tournament_photo = TournamentPhoto.find(params[:id])
     @tournament_photo.destroy
 
     respond_to do |format|

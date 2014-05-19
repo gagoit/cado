@@ -1,17 +1,22 @@
-%h1 Listing bet_scores
-
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @bet_scores.each do |bet_score|
+.bet-scores-in-match
+  %h1 All Bet Scores for this Match:
+  %table.table.table-striped.table-bordered
     %tr
-      %td= link_to 'Show', match_bet_score_path(bet_score.match, bet_score)
-      %td= link_to 'Edit', edit_match_bet_score_path(bet_score)
-      %td= link_to 'Destroy', match_bet_score_path(bet_score.match, bet_score), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th Match
+      %th Score
+      %th Money
+      %th Created At
+      %th Action
 
-%br
-
-= link_to 'New Bet score', new_match_bet_score_path(@match)
+    - @bet_scores = @match.bet_scores
+    - @bet_scores.each do |bet_score|
+      %tr
+        %td #{bet_score.match.name}
+        %td #{bet_score.score}
+        %td #{number_to_currency(bet_score.money, {precision: 0, unit: "VND "})}
+        %td #{(bet_score.created_at.localtime).strftime("%b %d, %Y - %H:%M")}
+        %td.action
+          - if can? :destroy, bet_score
+            %a.delete{href: match_bet_score_path(bet_score.match, bet_score), :data => { :confirm => 'Are you sure to delete this score?', :method => :delete }}
+              %i.fa.fa-trash-o
+              Destroy

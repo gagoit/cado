@@ -1,4 +1,6 @@
 class MatchPhotosController < ApplicationController
+  load_and_authorize_resource :match_photo
+
   # GET /match_photos
   # GET /match_photos.json
   def index
@@ -13,7 +15,7 @@ class MatchPhotosController < ApplicationController
   # GET /match_photos/1
   # GET /match_photos/1.json
   def show
-    @match_photo = MatchPhoto.find(params[:id])
+    #@match_photo = MatchPhoto.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +36,7 @@ class MatchPhotosController < ApplicationController
 
   # GET /match_photos/1/edit
   def edit
-    @match_photo = MatchPhoto.find(params[:id])
+    #@match_photo = MatchPhoto.find(params[:id])
   end
 
   # POST /match_photos
@@ -56,7 +58,7 @@ class MatchPhotosController < ApplicationController
   # PUT /match_photos/1
   # PUT /match_photos/1.json
   def update
-    @match_photo = MatchPhoto.find(params[:id])
+    #@match_photo = MatchPhoto.find(params[:id])
 
     respond_to do |format|
       if @match_photo.update_attributes(params[:match_photo])
@@ -72,7 +74,7 @@ class MatchPhotosController < ApplicationController
   # DELETE /match_photos/1
   # DELETE /match_photos/1.json
   def destroy
-    @match_photo = MatchPhoto.find(params[:id])
+    #@match_photo = MatchPhoto.find(params[:id])
     @match_photo.destroy
 
     respond_to do |format|

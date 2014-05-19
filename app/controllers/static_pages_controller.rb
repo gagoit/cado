@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
-	skip_filter :authenticate_user!
+	skip_authorization_check
+  
   def about
   end
 

@@ -20,5 +20,5 @@
       = render :partial => "tournament", :locals => {tournament: tournament, show_teams: false}
 
 %br
-
-= link_to 'New Tournament', new_tournament_path
+- if can? :create, Tournament
+  = link_to 'New Tournament', new_tournament_path

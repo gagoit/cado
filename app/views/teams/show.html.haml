@@ -1,6 +1,8 @@
 .team
   .row
-    %h2 #{@team.name}
+    %h2 
+      %img{src: @team.main_image.url}
+      #{@team.name}
     .col-md-3
     .col-md-6
       = render :partial => "shared/slide", :locals => {:class_name => "team_photos", :images => @team.team_photos.map { |e| e.image.url(:medium) }}
@@ -18,9 +20,10 @@
       %p #{@team.players}
 
     
-
-= link_to 'Add Photos', new_team_photo_path(team_id: @team.id)
-\|
-= link_to 'Edit', edit_team_path(@team)
-\|
+- if can? :update, @team
+  = link_to 'Add Photos', new_team_photo_path(team_id: @team.id)
+  \|
+  = link_to 'Edit', edit_team_path(@team)
+  \|
+  
 = link_to 'Back', teams_path

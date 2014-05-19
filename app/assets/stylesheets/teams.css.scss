@@ -1,3 +1,17 @@
 // Place all the styles related to the team_photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.list-tournament-team {
+  li {
+    width: 24%;
+    text-align: left;
+    margin-bottom: 20px;
+
+    padding-left: 0;
+
+    img {
+      display: inline;
+    }
+  }
+
+}

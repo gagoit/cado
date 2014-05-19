@@ -1,12 +1,21 @@
-%h1 Listing teams
-
-- @teams.each do |team|
-  = render :partial => "teams/team", :locals => {:team => team}
+- if @tournament
+  %h1 Listing #{@tournament.name}'s Teams
+- else
+  %h1 Listing Teams
   
-  = link_to 'Show', team
-  = link_to 'Edit', edit_team_path(team)
-  = link_to 'Destroy', team, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%ul.list-unstyled.list-inline.list-tournament-team
+  - @teams.each do |team|
+    %li
+      = render :partial => "teams/simple_team", :locals => {:team => team}
+      
+      %br
+
+      - if can? :update, team
+        = link_to 'Show', team
+        = link_to 'Edit', edit_team_path(team)
+        = link_to 'Destroy', team, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Team', new_team_path
+- if can? :create, Team
+  = link_to 'New Team', new_team_path

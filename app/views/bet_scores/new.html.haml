@@ -16,20 +16,21 @@
         %td #{number_to_currency(bet_score.money, {precision: 0, unit: "VND "})}
         %td #{(bet_score.created_at.localtime).strftime("%b %d, %Y - %H:%M")}
         %td.action
-          %a.delete{href: match_bet_score_path(bet_score.match, bet_score), :data => { :confirm => 'Are you sure to delete this score?', :method => :delete }}
-            %i.fa.fa-trash-o
-            Destroy
+          - if can? :destroy, bet_score
+            %a.delete{href: match_bet_score_path(bet_score.match, bet_score), :data => { :confirm => 'Are you sure to delete this score?', :method => :delete }}
+              %i.fa.fa-trash-o
+              Destroy
           
+  - if @match.can_bet_score
+    %div.new-bet-score
+      %h1 Create new Bet Score for this match:
+      = bootstrap_form_for @bet_score, :url => match_bet_scores_path(@match) do |f|
+        = f.text_field :scorea, type: 'number', label: @match.playera.name
+        = f.text_field :scoreb, type: 'number', label: @match.playerb.name
+        = f.text_field :money, type: 'number', placeholder: "Money must be multiple of 10,000 VND", step: 10000
 
-  %div.new-bet-score
-    %h1 Create new Bet Score for this match:
-    = bootstrap_form_for @bet_score, :url => match_bet_scores_path(@match) do |f|
-      = f.text_field :scorea, type: 'number', label: @match.playera.name
-      = f.text_field :scoreb, type: 'number', label: @match.playerb.name
-      = f.text_field :money, type: 'number', placeholder: "Money must be multiple of 10,000 VND", step: 10000
-
-      .actions
-        = f.submit 'Save'
+        .actions
+          = f.submit 'Save'
 
 
 = link_to 'Back to Match', match_path(@match)

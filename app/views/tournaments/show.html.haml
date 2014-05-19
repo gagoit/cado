@@ -40,9 +40,11 @@
             %h2 #{link_to team.name, team}
             .short_description
               = raw team.short_description
-    
-= link_to 'Add Photos', new_tournament_photo_path(tournament_id: @tournament.id)
-\|
-= link_to 'Edit', edit_tournament_path(@tournament)
-\|
+
+- if can? :update, @tournament
+  = link_to 'Add Photos', new_tournament_photo_path(tournament_id: @tournament.id)
+  \|
+  = link_to 'Edit', edit_tournament_path(@tournament)
+  \|
+  
 = link_to 'Back', tournaments_path

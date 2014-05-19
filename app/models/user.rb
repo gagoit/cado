@@ -30,10 +30,12 @@ class User
   field :name, :type => String
   field :about_me, :type => String
 
+  field :admin, :type => Boolean
+
   devise :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin, :google]
 
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :about_me, 
-      :avatar, :avatar_cache
+      :avatar, :avatar_cache, :admin
 
   validates :email, :presence => true, :uniqueness => {:case_sensitive => false}
 
@@ -68,6 +70,8 @@ class User
   has_many :comments
 
   has_many :friendships
+
+  has_many :bet_scores
 
   ##
   # Dynamically create find_for_facebook_oauth and find_for_twitter_oauth methods

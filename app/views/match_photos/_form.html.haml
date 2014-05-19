@@ -1,10 +1,4 @@
 = bootstrap_form_for @match_photo, :html => { :multipart => true } do |f|
-  / - if @match_photo.errors.any?
-  /   #error_explanation
-  /     %h2= "#{pluralize(@match_photo.errors.count, "error")} prohibited this match_photo from being saved:"
-  /     %ul
-  /       - @match_photo.errors.full_messages.each do |msg|
-  /         %li= msg
 
   = f.select :match_id, (Match.all.map { |e| [e.name, e.id] }), :include_blank => false
 

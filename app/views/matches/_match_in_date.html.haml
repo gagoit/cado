@@ -2,14 +2,16 @@
 .col-xs-12.clear-grid
   #300186456.mu.fixture
     .mu-i
+      .mu-i-name #{link_to match.name, match}
       .mu-i-datetime
         #{time_converted[:local].strftime("%d %b, %Y - %H:%M")}
         %span.wrap-localtime Local time
       .mu-i-date #{time_converted[:local].strftime("%d %b, %Y")}
       .mu-i-matchnum Match #{match.number}
-      .mu-i-group Group #{match.group}
+      - unless match.group.blank?
+        .mu-i-group Group #{match.group}
 
-      - if match.can_bet_score
+      - if can? :create, BetScore
         .mu-i-bet-score
           = link_to "Bet Score", new_match_bet_score_path(match)
 

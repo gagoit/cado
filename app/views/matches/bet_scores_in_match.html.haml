@@ -1,4 +1,5 @@
 .bet-scores-in-match
+  %h1 All Bet Scores for this Match:
   %table.table.table-striped.table-bordered
     %tr
       %th Match
@@ -7,6 +8,7 @@
       %th Created At
       %th Action
 
+    - @bet_scores = @match.bet_scores
     - @bet_scores.each do |bet_score|
       %tr
         %td #{bet_score.match.name}
@@ -14,17 +16,7 @@
         %td #{number_to_currency(bet_score.money, {precision: 0, unit: "VND "})}
         %td #{(bet_score.created_at.localtime).strftime("%b %d, %Y - %H:%M")}
         %td.action
-          %a.delete{"data-bet-score-id" => bet_score.id}
-            %i.fa.fa-trash-o
-            Delete
-
-  %div.new-bet-score
-    %h1 Create new Bet Score for this match:
-    = bootstrap_form_for @match.bet_scores.new, :url => match_bet_scores_path(@match) do |f|
-      = f.text_field :scorea, type: 'number', label: @match.playera.name
-      = f.text_field :scoreb, type: 'number', label: @match.playerb.name
-      = f.text_field :money, type: 'number', placeholder: "Money must be multiple of 10,000 VND", step: 10000
-
-
-      .actions
-        = f.submit 'Save'
+          - if can? :destroy, bet_score
+            %a.delete{href: match_bet_score_path(bet_score.match, bet_score), :data => { :confirm => 'Are you sure to delete this score?', :method => :delete }}
+              %i.fa.fa-trash-o
+              Destroy

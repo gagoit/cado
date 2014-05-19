@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_authorization_check
   # GET /posts
   # GET /posts.json
   respond_to :html, :xml, :json

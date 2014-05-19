@@ -1,4 +1,6 @@
 class MatchesController < ApplicationController
+  load_and_authorize_resource :match
+
   # GET /matches
   # GET /matches.json
   def index
@@ -19,7 +21,7 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
-    @match = Match.find(params[:id])
+    #@match = Match.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,7 +42,7 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
-    @match = Match.find(params[:id])
+    #@match = Match.find(params[:id])
   end
 
   # POST /matches
@@ -62,7 +64,7 @@ class MatchesController < ApplicationController
   # PUT /matches/1
   # PUT /matches/1.json
   def update
-    @match = Match.find(params[:id])
+    #@match = Match.find(params[:id])
 
     respond_to do |format|
       if @match.update_attributes(params[:match])
@@ -78,7 +80,7 @@ class MatchesController < ApplicationController
   # DELETE /matches/1
   # DELETE /matches/1.json
   def destroy
-    @match = Match.find(params[:id])
+    #@match = Match.find(params[:id])
     @match.destroy
 
     respond_to do |format|
@@ -89,7 +91,7 @@ class MatchesController < ApplicationController
 
   # GET
   def bet_scores_in_match
-    @match = Match.find(params[:id])
+    #@match = Match.find(params[:id])
 
     @bet_scores = @match.bet_scores.by_user(current_user)
 

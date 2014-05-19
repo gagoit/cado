@@ -1,4 +1,6 @@
 class TeamPhotosController < ApplicationController
+  load_and_authorize_resource :team_photo
+
   # GET /team_photos
   # GET /team_photos.json
   def index
@@ -13,7 +15,7 @@ class TeamPhotosController < ApplicationController
   # GET /team_photos/1
   # GET /team_photos/1.json
   def show
-    @team_photo = TeamPhoto.find(params[:id])
+    #@team_photo = TeamPhoto.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +36,7 @@ class TeamPhotosController < ApplicationController
 
   # GET /team_photos/1/edit
   def edit
-    @team_photo = TeamPhoto.find(params[:id])
+    #@team_photo = TeamPhoto.find(params[:id])
   end
 
   # POST /team_photos
@@ -56,7 +58,7 @@ class TeamPhotosController < ApplicationController
   # PUT /team_photos/1
   # PUT /team_photos/1.json
   def update
-    @team_photo = TeamPhoto.find(params[:id])
+    #@team_photo = TeamPhoto.find(params[:id])
 
     respond_to do |format|
       if @team_photo.update_attributes(params[:team_photo])
@@ -72,7 +74,7 @@ class TeamPhotosController < ApplicationController
   # DELETE /team_photos/1
   # DELETE /team_photos/1.json
   def destroy
-    @team_photo = TeamPhoto.find(params[:id])
+    #@team_photo = TeamPhoto.find(params[:id])
     @team_photo.destroy
 
     respond_to do |format|
