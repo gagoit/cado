@@ -17,16 +17,16 @@
         %li{:class => nav_class("post")}
           %a{:href => posts_path} News
 
-        %li{:class => nav_class("tournament")}
-          %a{:href => tournaments_path} Tournaments
-
-        %li{:class => nav_class("match")}
-          %a{:href => matches_path} Matches
-
-        %li{:class => nav_class("team")}
-          %a{:href => teams_path} Teams
-        
         - if user_signed_in?
+          %li{:class => nav_class("tournament")}
+            %a{:href => tournaments_path} Tournaments
+
+          %li{:class => nav_class("match")}
+            %a{:href => matches_path} Matches
+
+          %li{:class => nav_class("team")}
+            %a{:href => teams_path} Teams
+          
           %li.dropdown.user-info
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = image_tag current_user.avatar.url(:small)

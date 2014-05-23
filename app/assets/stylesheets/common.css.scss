@@ -43,7 +43,10 @@
   }
 }
 
-
+.navbar-matchlistheader .container {
+  padding: 0;
+  width: 100%;
+}
 
 .navbar-matchlistheader .container .inner .matchlist-header {
   border: 1px solid #9ec9e3;
