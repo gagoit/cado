@@ -17,6 +17,8 @@ var Tournament = {
     
     $("#tournament_team_ids").chosen();
 
+    $("#group_team_ids").chosen();
+
     /* Init start time, end time*/
     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
@@ -47,6 +49,28 @@ var Tournament = {
 
     Gagoit.disable_edit($("#tournament_end_time"));
     Gagoit.disable_edit($("#tournament_start_time"));
+  },
+
+  get_matches: function(){
+    var result = [];
+    var need_stop = false;
+    $.each($(".match-list-date.anchor .mu.fixture"), function(){
+      if(!need_stop){
+        var match = {};
+        match.date = $(this).find(".mu-i-datetime").text();
+        match.group = $(this).find(".mu-i-group").text();
+
+        match.playera = $(this).find(".mu-m .t.home .t-nText").text();
+        match.playerb = $(this).find(".mu-m .t.away .t-nText").text();
+
+        result.push(match);
+
+        if($(this).attr("id") == "300186506"){
+          need_stop = true;
+        }
+      }
+      
+    });
   }
   
 }

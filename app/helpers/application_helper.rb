@@ -33,9 +33,9 @@ module ApplicationHelper
 
   def converttime(time)
     {
-      mytime: time.localtime,
-      local: time - 3.hours,
-      utc: time
+      mytime: time.localtime + 3.hours,
+      local: time,
+      utc: time + 3.hours
     }
   end
 

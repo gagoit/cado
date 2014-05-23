@@ -1,0 +1,7 @@
+= bootstrap_form_for @group, :url => tournament_groups_path(@tournament) do |f|
+  = f.text_field :name
+
+  = f.select :team_ids, (@tournament.teams.map { |e| [e.name, e.id] }), {}, :multiple => true, :data => { :placeholder => 'Select Team' }
+
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,8 @@
+%h1 Editing group
+
+= render 'form'
+
+.links
+  = link_to 'Show', tournament_group_path(@tournament, @group)
+  \|
+  = link_to 'Back', tournament_groups_path(@tournament)

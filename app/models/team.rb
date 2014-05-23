@@ -23,6 +23,8 @@ class Team
 
   has_and_belongs_to_many :tournaments
 
+  has_and_belongs_to_many :groups
+
   validates :name, :description, :short_description, :short_name , :presence => true
 
   has_mongoid_attached_file :main_image, styles: {  large: ["1024", :jpg],

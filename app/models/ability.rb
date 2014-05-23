@@ -9,7 +9,7 @@ class Ability
     if user.admin?
       can :manage, :all
 
-    elsif !user.new_record?
+    elsif user.new_record?
       # users can manage themselves
       can :manage, user, :id => user.id
       can :read, :all
@@ -24,7 +24,7 @@ class Ability
         comment.user_id = user.id
       end
 
-      can :create, [Comment, Post]
+      can :manage, [Comment, Post]
 
       can [:create], BetScore do |bc|
         bc.match.can_bet_score

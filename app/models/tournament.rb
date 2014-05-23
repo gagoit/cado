@@ -20,6 +20,8 @@ class Tournament
   has_and_belongs_to_many :teams
   has_many :tournament_photos
 
+  has_many :groups, order: [:name, :asc]
+
   validate do
     # if start_time && end_time && start_time > end_time
     #   self.errors.add(:end_time, "must be greater than start time")

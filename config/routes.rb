@@ -22,6 +22,8 @@ GagoitDocuments::Application.routes.draw do
 
   resources :tournaments do
     resources :standings
+
+    resources :groups
   end
 
   resources :matches do

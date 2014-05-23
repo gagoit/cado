@@ -88,7 +88,7 @@ class Match
   # before 70' of the match
   ##
   def can_bet_score
-    current_utc_time = Time.now.utc
+    current_utc_time = Time.now.utc + 3.hours
     if start_time + 70.minutes < current_utc_time
       false
     else

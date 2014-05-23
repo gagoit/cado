@@ -1,0 +1,12 @@
+.posts
+  - if @posts.blank?
+    %p.no-post
+      = t("post.no_post")
+  - else
+    %ul.list-unstyled.list-inline.list-news
+      - @posts.each do |post|
+        %li
+          %a{href: post_path(post)}
+            %img.img-responsive{src: post.main_image.url(:medium)}
+            %h4 #{post.title}
+          %div.time #{post.created_at.strftime("%d %b, %Y - %H:%M")}

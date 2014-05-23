@@ -1,6 +1,6 @@
 .comment
   .user-avatar.col-lg-2
-    - if comment.created_by.avatar_file_name
+    - if comment.created_by.try(:avatar_file_name)
       %img{src: comment.created_by.avatar.url(:small)}
     - else
       = image_tag 'no-avatar.jpg'

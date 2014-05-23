@@ -1,0 +1,17 @@
+%h1 Listing groups
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @groups.each do |group|
+    %tr
+      %td= link_to 'Show', tournament_group_path(@tournament, group)
+      %td= link_to 'Edit', edit_tournament_group_path(@tournament, group)
+      %td= link_to 'Destroy', tournament_group_path(@tournament, group), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Group', new_tournament_group_path(@tournament)

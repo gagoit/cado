@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   respond_to :html, :xml, :json
 
   def index
-    @comments = Comment.all
+    @comments = @post.comments
 
     respond_to do |format|
       format.html # index.html.erb

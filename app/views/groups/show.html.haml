@@ -1,0 +1,7 @@
+
+.links
+  - if can? :update, @group
+    = link_to 'Edit', edit_tournament_group_path(@tournament, @group)
+    \|
+
+  = link_to 'Back', tournament_groups_path(@tournament)
