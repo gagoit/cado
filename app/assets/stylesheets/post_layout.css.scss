@@ -1,0 +1,17 @@
+.post-layout{
+  .well.top-posts {
+    ul.bs-sidenav li {
+      overflow: auto;
+
+      img {
+        float: left;
+      }
+
+      a {
+        margin-left: 80px;
+      }
+    }
+
+
+  }
+}

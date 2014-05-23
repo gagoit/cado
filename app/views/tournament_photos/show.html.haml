@@ -2,8 +2,9 @@
 
 %img.img-responsive{:src => @tournament_photo.image.url}
 
-- if can? :update, @tournament_photo
-  = link_to 'Edit', edit_tournament_photo_path(@tournament_photo)
-  \|
-  
-= link_to 'Back', tournament_photos_path
+.links
+  - if can? :update, @tournament_photo
+    = link_to 'Edit', edit_tournament_photo_path(@tournament_photo)
+    \|
+   
+  = link_to 'Back', tournament_photos_path

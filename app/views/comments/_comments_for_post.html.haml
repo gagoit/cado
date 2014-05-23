@@ -12,7 +12,10 @@
   - if current_user
     %li.row
       .user-avatar.col-lg-2
-        = image_tag 'no-avatar.jpg'
+        - if current_user.avatar_file_name
+          %img{src: current_user.avatar.url(:small)}
+        - else
+          = image_tag 'no-avatar.jpg'
       .content-form.col-lg-10
         = form_for [post, post.comments.new], html: {:remote => true, :'data-type' => 'json'} do |f|
           %p 

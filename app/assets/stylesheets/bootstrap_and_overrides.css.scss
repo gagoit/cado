@@ -2,6 +2,12 @@ body {
   padding-top: 60px;
 }
 
+@media (min-width: 1200px) {
+  .container {
+    width: 1028px;
+  }
+}
+
 .navbar .user {
   float: right;
 }
@@ -21,8 +27,8 @@ body {
 .container {
 	margin-right: auto;
 	margin-left: auto;
-	padding-left: 0;
-	padding-right: 0;
+	padding: 0 20px;
+  background-color: #ffffff;
 }
 
 .nav.bs-sidenav {

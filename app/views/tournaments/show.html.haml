@@ -4,6 +4,8 @@
       #{@tournament.name}
       %small From #{@tournament.start_time.strftime("%B %d, %Y")} to #{@tournament.end_time.strftime("%B %d, %Y")}
 
+    .img-header
+
     .nav-wrap
       %ul.nav.nav-pills.lev2.items3
         %li.menu-2-matches.first
@@ -41,10 +43,11 @@
             .short_description
               = raw team.short_description
 
-- if can? :update, @tournament
-  = link_to 'Add Photos', new_tournament_photo_path(tournament_id: @tournament.id)
-  \|
-  = link_to 'Edit', edit_tournament_path(@tournament)
-  \|
-  
-= link_to 'Back', tournaments_path
+.links
+  - if can? :update, @tournament
+    = link_to 'Add Photos', new_tournament_photo_path(tournament_id: @tournament.id)
+    \|
+    = link_to 'Edit', edit_tournament_path(@tournament)
+    \|
+    
+  = link_to 'Back', tournaments_path

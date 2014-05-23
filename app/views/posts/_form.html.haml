@@ -1,4 +1,4 @@
-= bootstrap_form_for @post do |f|
+= bootstrap_form_for @post, :html => { :multipart => true } do |f|
   - if @post.errors.any?
     #error_explanation
       %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
@@ -6,9 +6,19 @@
         - @post.errors.full_messages.each do |msg|
           %li= msg
 
-  = f.select :category, options_for_select(Post::CATEGORIES.invert, f.object.category)
+  / = f.select :category, options_for_select(Tournament.all.map { |e| {e.name => e.id} }, f.object.category)
 
   = f.text_field :title
+
+  .fileinput.fileinput-new{"data-provides" => "fileinput"}
+    .fileinput-preview.thumbnail{"data-trigger" => "fileinput", :style => "width: 200px; height: 150px;"}
+    %div
+      %span.btn.btn-default.btn-file
+        %span.fileinput-new Select image
+        %span.fileinput-exists Change
+        %input{id: "post_main_image", name: "post[main_image]", :type => "file"}/
+      %a.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Remove
+
   
   = f.text_area :body, :class => 'tinymce'
   

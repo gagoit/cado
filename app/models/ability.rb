@@ -16,6 +16,16 @@ class Ability
     else
       can :read, :all
 
+      can :manage, Post do |post|
+        post.user_id = user.id
+      end
+
+      can :update, Comment do |comment|
+        comment.user_id = user.id
+      end
+
+      can :create, [Comment, Post]
+
       can [:create], BetScore do |bc|
         bc.match.can_bet_score
       end

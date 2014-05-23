@@ -64,4 +64,12 @@ class ApplicationController < ActionController::Base
   def self.reset_respond_to
     self.mimes_for_respond_to = {}
   end
+
+  def with_format(format, &block)
+    old_formats = formats
+    self.formats = [format]
+    block.call
+    self.formats = old_formats
+    nil
+  end
 end

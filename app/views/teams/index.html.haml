@@ -11,11 +11,13 @@
       %br
 
       - if can? :update, team
-        = link_to 'Show', team
-        = link_to 'Edit', edit_team_path(team)
-        = link_to 'Destroy', team, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        .links
+          = link_to 'Show', team
+          = link_to 'Edit', edit_team_path(team)
+          = link_to 'Destroy', team, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
 - if can? :create, Team
-  = link_to 'New Team', new_team_path
+  .links
+    = link_to 'New Team', new_team_path

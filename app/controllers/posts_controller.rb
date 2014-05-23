@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_authorization_check
+  load_and_authorize_resource :post
   # GET /posts
   # GET /posts.json
   respond_to :html, :xml, :json
@@ -25,7 +25,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -46,7 +45,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
   end
 
   # POST /posts
@@ -69,7 +68,7 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.json
   def update
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
@@ -85,7 +84,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     @post.destroy
 
     respond_to do |format|

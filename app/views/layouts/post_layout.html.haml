@@ -12,7 +12,7 @@
   %body
     = render :partial => "layouts/top_nav"
     
-    .section
+    .section.post-layout
       .container
         .row
           .col-lg-8
@@ -36,24 +36,37 @@
                       %i.fa.fa-search
               / /input-group
             / /well
-            .well
-              %h4 Popular Post Categories
-              .row
-                - current_category = params[:category]
-                - if defined?(@post)
-                  - current_category = @post.category
-                  
-                %ul.nav.bs-sidenav
-                  %li{:class => current_category.blank? ? "active" : ""}
-                    = link_to "All Posts", posts_path
 
-                  - Post::CATEGORIES.each do |key, category|
-                    %li{:class => current_category == key ? "active" : ""}
-                      = link_to category, posts_path(:category => key)
+            /Top Posts
+            .well.top-posts
+              %h4 Popular News
+              .row
+                - top_posts = Post.all.order_by([:created_at, :desc]).limit(5)
+                %ul.nav.bs-sidenav
+                  - top_posts.each do |post|
+                    %li
+                      %img{src: post.main_image.url(:small)}
+                      
+                      = link_to post.title, post
+
+            / .well
+            /   %h4 Popular Post Categories
+            /   .row
+            /     - current_category = params[:category]
+            /     - if defined?(@post)
+            /       - current_category = @post.category
+                  
+            /     %ul.nav.bs-sidenav
+            /       %li{:class => current_category.blank? ? "active" : ""}
+            /         = link_to "All Posts", posts_path
+
+            /       - Post::CATEGORIES.each do |key, category|
+            /         %li{:class => current_category == key ? "active" : ""}
+            /           = link_to category, posts_path(:category => key)
             / /well
-            .well
-              %h4 Side Widget Well
-              %p Bootstrap's default well's work great for side widgets! What is a widget anyways...?
+            / .well
+            /   %h4 Side Widget Well
+            /   %p Bootstrap's default well's work great for side widgets! What is a widget anyways...?
         
         / /.row
       / /.container

@@ -1,8 +1,9 @@
 .update-post
-  %h1 Editing post
+  %h1 Editing News
 
   = render 'form'
 
-= link_to 'Show', @post
-\|
-= link_to 'Back', posts_path
+.links
+  = link_to 'Show', @post
+  \|
+  = link_to 'Back', posts_path

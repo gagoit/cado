@@ -1,3 +1,4 @@
+
 - if @current_tournaments.length > 0
   .current-tournaments
     %h1.page-header Current Tournaments
@@ -20,5 +21,6 @@
       = render :partial => "tournament", :locals => {tournament: tournament, show_teams: false}
 
 %br
-- if can? :create, Tournament
-  = link_to 'New Tournament', new_tournament_path
+.links
+  - if can? :create, Tournament
+    = link_to 'New Tournament', new_tournament_path

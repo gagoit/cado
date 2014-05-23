@@ -10,6 +10,9 @@
   %b Post:
   = @comment.post
 
-= link_to 'Edit', edit_comment_path(@comment)
-\|
-= link_to 'Back', comments_path
+.links
+  - if can? :update, @comment
+    = link_to 'Edit', edit_comment_path(@comment)
+    \|
+    
+  = link_to 'Back', comments_path

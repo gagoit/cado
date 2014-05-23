@@ -8,5 +8,6 @@
 
 %br
 
-- if can? :create, Match
-  = link_to 'New Match', new_match_path
+.links
+  - if can? :create, Match
+    = link_to 'New Match', new_match_path

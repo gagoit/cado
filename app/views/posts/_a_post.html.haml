@@ -17,6 +17,11 @@
   .body
     = raw post.body
 
+  - if can? :update, post
+    .links
+      = link_to "Edit", edit_post_path(post)
+
+
   %hr
     / the comments
     .comments

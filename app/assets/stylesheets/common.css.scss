@@ -1,3 +1,16 @@
+.section {
+  background-image: url("http://img.fifa.com/images/fwc/2014/brand/bg.jpg?v=130449958347350073");
+  background-color: #fff;
+  background-repeat: repeat-x;
+  background-position: center -110px;
+  width: 100%;
+  -webkit-background-size: 2560px 650px;
+}
+
+.links {
+  margin-top: 20px;
+}
+
 .slide.match_photos, .slide.team_photos, .slide.tournament_photos {
   &.small {
     width: 70px;
@@ -10,8 +23,8 @@
   }
 
   &.medium {
-    width: 250px;
-    height: 250px;
+    width: 216px;
+    height: 216px;
   }
 
   &.thumb {

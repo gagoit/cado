@@ -45,7 +45,7 @@ en:
               is_required: Post title is required
 
   post:
-    no_post: There is no post in this category!
+    no_post: There is no news!
 
   donhang:
     mo: MO

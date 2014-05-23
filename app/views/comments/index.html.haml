@@ -20,4 +20,6 @@
 
 %br
 
-= link_to 'New Comment', new_comment_path
+- if can? :create, Comment
+  .links
+    = link_to 'New Comment', new_comment_path

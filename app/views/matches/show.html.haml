@@ -19,10 +19,11 @@
 
   /     %p #{@match.players}
 
-- if can? :update, @match
-  = link_to 'Add Photos', new_match_photo_path(match_id: @match.id)
-  \|
-  = link_to 'Edit', edit_match_path(@match)
-  \|
-  
-= link_to 'Back', matches_path
+.links
+  - if can? :update, @match
+    = link_to 'Add Photos', new_match_photo_path(match_id: @match.id)
+    \|
+    = link_to 'Edit', edit_match_path(@match)
+    \|
+    
+  = link_to 'Back', matches_path

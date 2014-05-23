@@ -1,3 +1,13 @@
 // Place all the styles related to the tournament_photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tournament {
+  .img-header {
+    height: 160px;
+    background-image: url("http://img.fifa.com/images/fwc/2014/brand/header.en.png?v=130449958347350073");
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center top;
+    -webkit-background-size: 1400px 155px;
+  }
+}
