@@ -31,5 +31,11 @@ class BetScore
     end
   end
 
+  after_save do
+    if score_changed? || money_changed?
+      self.user.calculate_money
+    end
+  end
+
   scope :by_user, lambda { |user| where(:user_id => user.id) }
 end

@@ -1,0 +1,142 @@
+/**
+* Admin - User module
+**/
+
+var User = {
+  /**
+  * Init module
+  **/
+  init: function(){
+    this.init_table();
+    this.init_events();
+  },
+
+  /**
+  * Init events
+  **/
+  init_events: function(){
+    
+  },
+
+  /**
+  * Init data table
+  **/
+  init_table: function(){
+    if($("#table-users").length > 0){
+      var tableUsers = $("#table-users").DataTable({
+        "bJQueryUI":true,
+        "bFilter": true,
+        "bLengthChange": false,
+        "bInfo": false,
+        "bProcessing": false,
+        "bServerSide": true,
+        "sScrollX": "100%",
+        "autoWidth": false,
+        "sPaginationType": "full_numbers",
+        "iDisplayLength": 20,
+        "order": [ 2, "asc" ],
+        "aoColumns": [
+          {
+            "bVisible": false,
+            "sTitle": "Id",
+            'bSortable': false,
+            "sClass": "align-right",
+            "mData": 'id'
+          },
+          {
+            "bVisible": true,
+            "sTitle": "No.",
+            'bSortable': false,
+            "sClass": "align-right",
+            "mData": 'no',
+            "sWidth": "110px"
+          },
+          {
+            "bVisible": true,
+            "sTitle": "Avatar",
+            'bSortable': false,
+            "sClass": "align-center",
+            "mData": 'avatar',
+            "sWidth": "110px",
+            "fnRender": Gagoit.renderImage
+          },
+          {
+            "bVisible": true,
+            "sTitle": "Name",
+            'bSortable': true,
+            "sClass": "align-left",
+            "mData": 'name',
+            "sWidth": "110px"
+          },
+          {
+            "bVisible": true,
+            "sTitle": "Email",
+            'bSortable': true,
+            "sClass": "align-left",
+            "mData": 'email',
+            "sWidth": "110px"
+          },
+          {
+            "bVisible": true,
+            "sTitle": "Win",
+            'bSortable': true,
+            "sClass": "align-right",
+            "mData": 'win',
+            "sWidth": "110px",
+            "fnRender": Gagoit.renderMoney
+          },
+          {
+            "bVisible": true,
+            "sTitle": "Lose",
+            'bSortable': true,
+            "sClass": "align-right",
+            "mData": 'lose',
+            "sWidth": "110px",
+            "mRender": Gagoit.renderMoney
+          },
+          {
+            "bVisible": true,
+            "sTitle": "Paid",
+            'bSortable': true,
+            "sClass": "align-right",
+            "mData": 'paid',
+            "sWidth": "110px",
+            "mRender": Gagoit.renderMoney
+          },
+          {
+            "bVisible": true,
+            "sTitle": "Action",
+            'bSortable': true,
+            "sClass": "align-center",
+            "sWidth": "110px",
+            "mRender": Gagoit.renderAction
+          }
+        ],
+        "sAjaxSource": "/admin/users",
+        "fnServerParams": function ( aoData ) {
+        
+        },
+        "fnInitComplete": function () {
+          $("#table-users input").focus();
+
+          $("#table-users input").unbind();
+
+          $("#table-real-rewards_filter input").live('keydown',function (e) {
+            if (e.keyCode == 13) {
+              tableUsers.fnFilter( this.value );
+              $("#table-users input").focus();
+            }
+          });
+        },
+        "fnDrawCallback": function (oSetting){
+          $(".dataTables_scrollBody").css("width", "100%");
+          $(".dataTables_scrollHead").css("width", "100%");
+        }
+      });
+    }
+  }
+}
+
+$(function() {
+  User.init();
+});

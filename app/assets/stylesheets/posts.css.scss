@@ -15,6 +15,12 @@
   }
 }
 
+.post {
+  .body .main-image {
+    margin-bottom: 20px;
+  }
+}
+
 .update-post {
 	input[type=text], textarea {
 		width: 99%;
@@ -88,7 +94,8 @@
     color: #333;
     font-size: 12px;
     background: #fbfbfb;
-
+    overflow: auto;
+    
     p {
       padding: 0 10px;
     }
@@ -98,9 +105,14 @@
 .list-news {
   li {
     width: 48%;
+    margin-bottom: 10px;
 
     .time {
       color: gray;
+
+      .fa-comment-o {
+        margin-left: 10px;
+      }
     }
   }
 }

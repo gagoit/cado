@@ -40,6 +40,8 @@ GagoitDocuments::Application.routes.draw do
 
   resources :match_photos
 
+  match "/admin/users", to: "admins#users", via: :get
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

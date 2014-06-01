@@ -1,5 +1,5 @@
 .section {
-  background-image: url("http://img.fifa.com/images/fwc/2014/brand/bg.jpg?v=130449958347350073");
+  background-image: image_url("background.jpg");
   background-color: #fff;
   background-repeat: repeat-x;
   background-position: center -110px;
@@ -125,6 +125,19 @@
     }
   }
 
+  ul li:hover, ul li:hover a, ul li:hover a .matchday-item {
+    background-color: #0087e6;
+    color: white;
+  }
+
+  ul li:hover a .matchday-item .match-dot{
+    color: white; 
+  }
+
+  ul li.restday {
+    background-color: #fff;
+    color: #ccc;
+  }
 }
 
 
@@ -167,7 +180,6 @@
   text-align: right;
 
   span {
-    padding-left: 20px;
     position: relative;
     cursor: pointer;
     color: #0087e6;
@@ -222,10 +234,15 @@ text-transform: uppercase;
 .mu .mu-i .mu-i-bet-score {
   margin-top: 10px;
 
+  i {
+    color: red;
+    cursor: pointer;
+  }
+
   a {
     cursor: pointer;
     color: #0087e6;
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 

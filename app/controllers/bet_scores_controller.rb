@@ -76,7 +76,11 @@ class BetScoresController < ApplicationController
   # DELETE /bet_scores/1.json
   def destroy
     #@bet_score = @match.bet_scores.find(params[:id])
-    @bet_score.destroy
+    if @bet_score.match.can_destroy_bet_score
+      @bet_score.destroy
+    else
+      flash[:error] = "You can not destroy bet score after 70' of match."
+    end
 
     respond_to do |format|
       format.html { redirect_to new_match_bet_score_path(@match) }

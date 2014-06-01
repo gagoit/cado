@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Timestamps
+  include Sunspot::Mongo
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -32,10 +33,14 @@ class User
 
   field :admin, :type => Boolean
 
+  field :lose, type: Float, default: 0.0
+  field :win, type: Float, default: 0.0
+  field :paid, type: Float, default: 0.0
+
   devise :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin, :google]
 
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :about_me, 
-      :avatar, :avatar_cache, :admin
+      :avatar, :avatar_cache, :admin, :lose, :win, :paid
 
   validates :email, :presence => true, :uniqueness => {:case_sensitive => false}
 
@@ -72,6 +77,13 @@ class User
   has_many :friendships
 
   has_many :bet_scores
+
+  scope :members, where(:admin => false, :email.ne => "vuongtieulong02@gmail.com")
+
+  searchable do
+    text :name
+    text :email
+  end
 
   ##
   # Dynamically create find_for_facebook_oauth and find_for_twitter_oauth methods
@@ -194,5 +206,37 @@ class User
   def not_completed_friend?(user_id)
     user_id = BSON::ObjectId(user_id) unless user_id.is_a?(BSON::ObjectId)
     friend_ids_not_confirm.include?(user_id)
+  end
+
+  ##
+  # Auto calculate money for each user
+  ##
+  def calculate_money
+    return_data = {lose: 0.0, win: 0.0}
+    
+    self.bet_scores.each do |e|
+      if e.match.result && e.match.result == e.score
+        return_data[:win] += e.money
+      else
+        return_data[:lose] += e.money
+      end
+    end
+
+    self.update_attributes({lose: return_data[:lose], win: return_data[:win]})
+  end
+
+  ##
+  # Auto calculate money for users
+  ##
+  def self.calculate_money(user_ids = nil)
+    if user_ids
+      users = User.find(user_ids)
+    else
+      users = User.members
+    end
+
+    users.each do |u|
+      u.calculate_money
+    end
   end
 end

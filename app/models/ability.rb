@@ -31,7 +31,7 @@ class Ability
       end
 
       can [:destroy], BetScore do |bc|
-        bc.user_id == user.id
+        bc.user_id == user.id && bc.match.can_destroy_bet_score
       end
     end
     #

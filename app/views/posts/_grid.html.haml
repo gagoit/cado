@@ -9,4 +9,10 @@
           %a{href: post_path(post)}
             %img.img-responsive{src: post.main_image.url(:medium)}
             %h4 #{post.title}
-          %div.time #{post.created_at.strftime("%d %b, %Y - %H:%M")}
+          %div.time 
+            %span.fa.fa-calendar
+              on
+              #{post.created_at.strftime("%d %b, %Y")}
+          
+            %span.fa.fa-comment-o
+              = pluralize(post.comments.count, "comment")

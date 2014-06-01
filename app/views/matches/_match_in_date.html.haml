@@ -13,6 +13,7 @@
 
       - if can? :create, BetScore
         .mu-i-bet-score
+          %i.fa.fa-money
           = link_to "Bet Score", new_match_bet_score_path(match)
 
       - unless match.result.blank?

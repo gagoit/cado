@@ -66,6 +66,33 @@ var Gagoit = {
     if($(".alert").length > 0){
       $(".alert").delay(6000).fadeOut("slow", function () { $(this).remove();});
     }
+  },
+
+  /**
+  * render Action
+  * @author DatPB
+  **/
+  renderAction: function(obj){
+    return  '<div class="btn-group action">' +
+              '<button type="button" class="btn btn-small view" value="'+obj.aData.id+'><span class="fa fa-eye"></span></button>' +
+              '<button type="button" class="btn btn-small destroy" value="'+obj.aData.id+'><span class="fa fa-trash-o"></span></button>' +
+            '</div>';
+  },
+
+  /**
+  * render Image
+  * @author DatPB
+  **/
+  renderImage: function(obj){
+    return '<img src="'+obj.aData.avatar+'" '+"class='user-avatar'"+'>';
+  },
+
+  /**
+  * render Money
+  * @author DatPB
+  **/
+  renderMoney: function(value){
+    return value;
   }
 }
 

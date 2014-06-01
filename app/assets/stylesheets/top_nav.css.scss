@@ -1,10 +1,10 @@
 .navbar-default.navbar-fixed-top {
 	.dropdown.user-info {
-    a {
+    > a {
       padding: 0;
     }
 
-    a img {
+    > a img {
       height: 50px;
     }
   }
