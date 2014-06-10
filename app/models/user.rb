@@ -2,12 +2,12 @@ class User
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Timestamps
-  include Sunspot::Mongo
+  include Mongoid::Search
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -31,7 +31,7 @@ class User
   field :name, :type => String
   field :about_me, :type => String
 
-  field :admin, :type => Boolean
+  field :admin, :type => Boolean, default: false
 
   field :lose, type: Float, default: 0.0
   field :win, type: Float, default: 0.0
@@ -78,11 +78,19 @@ class User
 
   has_many :bet_scores
 
-  scope :members, where(:admin => false, :email.ne => "vuongtieulong02@gmail.com")
+  scope :members, where(:admin.ne => true, :email.ne => "vuongtieulong02@gmail.com")
 
-  searchable do
-    text :name
-    text :email
+  # searchable do
+  #   text :name
+  #   text :email
+  # end
+
+  search_in :name, :email
+
+  validate(:on => :create) do |user|
+    if !user.email.blank?
+      errors.add(:email, 'Invalid domain for email address. Email must has domain @elarion.com') unless user.email[/@elarion.com$/]
+    end
   end
 
   ##

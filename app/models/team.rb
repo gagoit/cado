@@ -2,7 +2,7 @@ class Team
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
-  include Sunspot::Mongo
+  include Mongoid::Search
 
   field :name, type: String
   field :players, type: String
@@ -37,8 +37,10 @@ class Team
 
   validates_attachment_content_type :main_image, :content_type => %w[image/png image/jpg image/jpeg image/gif]
 
-  searchable do
-    text :name
-    text :players
-  end
+  # searchable do
+  #   text :name
+  #   text :players
+  # end
+
+  search_in :name, :players
 end

@@ -92,7 +92,7 @@ var User = {
             "sClass": "align-right",
             "mData": 'lose',
             "sWidth": "110px",
-            "mRender": Gagoit.renderMoney
+            "fnRender": Gagoit.renderMoney
           },
           {
             "bVisible": true,
@@ -101,7 +101,7 @@ var User = {
             "sClass": "align-right",
             "mData": 'paid',
             "sWidth": "110px",
-            "mRender": Gagoit.renderMoney
+            "fnRender": Gagoit.renderMoney
           },
           {
             "bVisible": true,
@@ -109,7 +109,7 @@ var User = {
             'bSortable': true,
             "sClass": "align-center",
             "sWidth": "110px",
-            "mRender": Gagoit.renderAction
+            "fnRender": Gagoit.renderAction
           }
         ],
         "sAjaxSource": "/admin/users",

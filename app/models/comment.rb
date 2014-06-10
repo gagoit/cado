@@ -1,7 +1,7 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Sunspot::Mongo
+  include Mongoid::Search
 
   # for paiging
   extend WillPaginate::PerPage
@@ -10,9 +10,11 @@ class Comment
 
   field :body, type: String
 
-  searchable do
-    text :body
-  end
+  # searchable do
+  #   text :body
+  # end
+
+  search_in :body
   
   belongs_to :post
 

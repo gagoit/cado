@@ -1,5 +1,7 @@
 GagoitDocuments::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :posts do
     resources :comments
 
@@ -9,7 +11,7 @@ GagoitDocuments::Application.routes.draw do
   root :to => 'home#index'
 
   devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => 'register'}, 
-    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: "registrations"} 
+    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: "registrations", confirmations: "confirmations"} 
 
   resources :users
 
@@ -41,6 +43,7 @@ GagoitDocuments::Application.routes.draw do
   resources :match_photos
 
   match "/admin/users", to: "admins#users", via: :get
+  match "/admin", to: "admins#index", via: :get
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

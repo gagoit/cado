@@ -2,7 +2,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
-  include Sunspot::Mongo
+  include Mongoid::Search
 
   # for paiging
   extend WillPaginate::PerPage
@@ -23,14 +23,16 @@ class Post
 
   validates_attachment_content_type :main_image, :content_type => %w[image/png image/jpg image/jpeg image/gif]
 
-  searchable do
-    text :title
-    text :body
+  # searchable do
+  #   text :title
+  #   text :body
 
-    text :comments do
-      comments.map { |comment| "#{comment.body}" }
-    end
-  end
+  #   text :comments do
+  #     comments.map { |comment| "#{comment.body}" }
+  #   end
+  # end
+
+  search_in :title, :body, :comments => :body
 
   belongs_to :created_by, :class_name => 'User'
   has_many :comments, :order => [[:created_at, :asc]]

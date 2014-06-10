@@ -1,5 +1,5 @@
 class StandingsController < ApplicationController
-  load_resource :tournament
+  load_and_authorize_resource :tournament
   # GET /standings
   # GET /standings.json
   def index

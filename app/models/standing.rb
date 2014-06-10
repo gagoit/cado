@@ -1,7 +1,7 @@
 class Standing
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Sunspot::Mongo
+  include Mongoid::Search
 
   field :position, type: Integer
   field :point, type: Integer
@@ -17,15 +17,16 @@ class Standing
 
   validates :played, :position, :point, :win, :lose, :draw, :numericality => {:greater_than_or_equal_to => 0, :only_integer => true}
 
-  searchable do
-    text :name
+  # searchable do
+  #   text :name
 
-    text :team do
-      team.name
-    end
+  #   text :team do
+  #     team.name
+  #   end
 
-    text :tournament do
-      tournament.name
-    end
-  end
+  #   text :tournament do
+  #     tournament.name
+  #   end
+  # end
+  search_in :name, :team => :name, :tournament => :name
 end

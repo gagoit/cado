@@ -2,7 +2,7 @@ class Tournament
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
-  include Sunspot::Mongo
+  include Mongoid::Search
 
   field :name, type: String
   field :description, type: String
@@ -29,9 +29,10 @@ class Tournament
     # end
   end
 
-  searchable do
-    text :name
-  end
+  # searchable do
+  #   text :name
+  # end
+  search_in :name
 
   def main_image
     tournament_photos.first

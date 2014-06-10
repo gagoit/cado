@@ -100,12 +100,7 @@ class PostsController < ApplicationController
     if params[:search].blank?
       @posts = Post.all
     else
-      search = Post.solr_search do
-        fulltext params[:search]
-        paginate :page => 1, :per_page => 500
-      end
-
-      @posts = search.results
+      @posts = Post.full_text_search(params[:search]).order_by([:created_at, :desc]).paginate( :page => 1, :per_page => 500)
     end
 
     respond_to do |format|

@@ -1,8 +1,7 @@
 class BetScore
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Sunspot::Mongo
-
+  
   field :scorea, type: Integer
   field :scoreb, type: Integer
   field :money, type: Integer

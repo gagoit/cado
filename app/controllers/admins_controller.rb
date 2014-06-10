@@ -4,6 +4,10 @@ class AdminsController < ApplicationController
 
   PER_PAGE = 20
   USER_COLS = ["no", "avatar", "name", "email", "lose", "win", "paid"]
+
+  def index
+  end
+
   # GET /admins
   # GET /admins.json
   ##
@@ -26,7 +30,7 @@ class AdminsController < ApplicationController
         if params[:iSortCol_0].blank?
           "name"
         else
-          USER_COLS[params["mDataProp_#{params[:iSortCol_0]}"]]
+          params["mDataProp_#{params[:iSortCol_0]}"]
         end
 
       sort = [[sort_field, params[:sSortDir_0]]]
@@ -36,15 +40,27 @@ class AdminsController < ApplicationController
         sort << [sort_field, params[:sSortDir_1]]
       end
 
-      search = User.members.solr_search do
-        fulltext params[:sSearch]
-        order_by sort
-        paginate :page => page, :per_page => per_page
+      @users = User.members.order_by(sort)#.paginate(:page => page, :per_page => per_page)
+      #.full_text_search(params[:sSearch]).asc(:name)
+      puts @users.count
+
+      result_data = {
+        "aaData" => [],
+        "iTotalDisplayRecords" => @users.count
+      }
+
+      @users.each_with_index do |e, index|
+        row = {}
+        row["no"] = index
+        row["avatar"] = e.avatar.url
+        ["name", "email", "lose", "win", "paid"].each do |key|
+          row[key] = e.send(key.to_sym)
+        end
+
+        result_data["aaData"] << row
       end
 
-      @users = search.result
-
-      render :json => @users
+      render :json => result_data
       return
     end
 

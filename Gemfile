@@ -89,7 +89,10 @@ gem "linkedin", "~> 0.4.6"
 gem 'mechanize'
 
 
-#For full-text search
-gem 'sunspot_rails'
-gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
-gem 'sunspot_mongo'
+# #For full-text search
+# gem 'sunspot_rails'
+# gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+# gem 'sunspot_mongo'
+
+gem 'mongoid_search'
+gem 'rails_admin'

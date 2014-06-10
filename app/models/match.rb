@@ -1,7 +1,7 @@
 class Match
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Sunspot::Mongo
+  include Mongoid::Search
   include Mongoid::MultiParameterAttributes
 
   field :description, type: String
@@ -42,15 +42,16 @@ class Match
     end
   end
 
-  searchable do
-    text :name
-    text :playerb do
-      playerb.name
-    end
-    text :playera do
-      playera.name
-    end
-  end
+  # searchable do
+  #   text :name
+  #   text :playerb do
+  #     playerb.name
+  #   end
+  #   text :playera do
+  #     playera.name
+  #   end
+  # end
+  search_in :name, :playera => :name, :playerb => :name
 
   def self.matches_in_dates(col = Match.all)
     result = {}

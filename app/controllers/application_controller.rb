@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout "new_layout"
 
-  check_authorization :unless => :devise_controller?
+  #check_authorization :unless => :devise_controller?
 
   before_filter :authenticate_request
 
