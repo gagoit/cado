@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource :post
+  load_and_authorize_resource :post, except: [:index, :search]
   # GET /posts
   # GET /posts.json
   respond_to :html, :xml, :json
@@ -100,7 +100,7 @@ class PostsController < ApplicationController
     if params[:search].blank?
       @posts = Post.all
     else
-      @posts = Post.full_text_search(params[:search]).order_by([:created_at, :desc]).paginate( :page => 1, :per_page => 500)
+      @posts = Post.full_text_search(params[:search]).order_by([:created_at, :desc])#.paginate( :page => 1, :per_page => 500)
     end
 
     respond_to do |format|

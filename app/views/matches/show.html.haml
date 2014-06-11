@@ -1,25 +1,25 @@
 .match
   .row
     .col-md-12
-      = render :partial => "shared/slide", :locals => {:class_name => "match_photos", :images => @match.match_photos.map { |e| e.image.url(:medium) }}
+      = render :partial => "shared/slide", :locals => {:class_name => "match_photos", :images => @match.match_photos.map { |e| e.image.url }}
 
   .row.two-teams
-    .col-md-5
+    .col-md-5.col-sm-3
       .teama.text-align-right
         %span.name #{link_to @match.playera.name, @match.playera}
-        %img.i-4-flag.flag{:alt => "#{@match.playera.name}", :src => @match.playera.main_image.url(:small)}/
+        %img.i-4-flag.flag{:alt => "#{@match.playera.name}", :src => @match.playera.main_image.url}/
         
 
-    .col-md-2
+    .col-md-2.col-sm-3
       .vs.text-align-center
         %span.date #{converttime(@match.start_time)[:mytime].strftime("%d %b, %Y - %H:%M")}
         %span.block VS
         - if can? :create, BetScore
           = link_to "Bet Score", new_match_bet_score_path(@match), class: "btn btn-primary"
 
-    .col-md-5
+    .col-md-5.col-sm-3
       .teamb.text-align-left
-        %img.BRA.i-4-flag.flag{:alt => "#{@match.playerb.name}", :src => @match.playerb.main_image.url(:small)}/
+        %img.BRA.i-4-flag.flag{:alt => "#{@match.playerb.name}", :src => @match.playerb.main_image}/
         %span.name #{link_to @match.playerb.name, @match.playerb}
 
   .row

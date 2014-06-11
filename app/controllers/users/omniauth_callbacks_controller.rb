@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_facebook_oauth(omniauth_param, current_user)
     
     if current_user #invite friend from facebook || connectting with facebook
-      if session["facebook"][:invite_friends]  #invite friend from facebook
+      if session["facebook"] && session["facebook"][:invite_friends]  #invite friend from facebook
         redirect_to invite_friends_friendships_path(provider: "facebook")
       else
         redirect_to root_path
@@ -19,7 +19,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         session['fb_access_token'] = omniauth_param["credentials"]["token"]
         sign_in_and_redirect @user, :event => :authentication
       else
-        session["devise.facebook_data"] = omniauth_param
+        session["devise.social_data"] = omniauth_param
         redirect_to new_user_registration_url
       end
     end
@@ -29,7 +29,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_twitter_oauth(omniauth_param, current_user)
     
     if current_user #invite friend from twitter || connectting with twitter
-      if session["twitter"][:invite_friends]  #invite friend from twitter
+      if session["twitter"] && session["twitter"][:invite_friends]  #invite friend from twitter
         redirect_to invite_friends_friendships_path(provider: "twitter")
       else
         redirect_to root_path
@@ -41,7 +41,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       
         sign_in_and_redirect @user, :event => :authentication
       else
-        session["devise.twitter_data"] = omniauth_param
+        session["devise.social_data"] = omniauth_param
         redirect_to new_user_registration_url
       end
     end
@@ -72,7 +72,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_google_oauth(omniauth_param, current_user)
     
     if current_user #invite friend from google || connectting with google
-      if session["google"][:invite_friends]  #invite friend from google
+      if session["google"] && session["google"][:invite_friends]  #invite friend from google
         redirect_to invite_friends_friendships_path(provider: "google")
       else
         redirect_to root_path
@@ -84,7 +84,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       
         sign_in_and_redirect @user, :event => :authentication
       else
-        session["devise.google_data"] = omniauth_param
+        session["devise.social_data"] = omniauth_param
         redirect_to new_user_registration_url
       end
     end
@@ -121,7 +121,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_linkedin_oauth(omniauth_param, current_user)
     
     if current_user #invite friend from linkedin || connectting with linkedin
-      if session["linkedin"][:invite_friends]  #invite friend from linkedin
+      if session["linkedin"] && session["linkedin"][:invite_friends]  #invite friend from linkedin
         redirect_to invite_friends_friendships_path(provider: "linkedin")
       else
         redirect_to root_path
@@ -133,7 +133,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       
         sign_in_and_redirect @user, :event => :authentication
       else
-        session["devise.linkedin_data"] = omniauth_param
+        session["devise.social_data"] = omniauth_param
         redirect_to new_user_registration_url
       end
     end

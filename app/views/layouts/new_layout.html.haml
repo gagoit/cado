@@ -15,16 +15,18 @@
       = render :partial => "layouts/banner"
     .section
       .container
-        - if current_user
-          .row
-            - if params[:controller].include?("devise/") || params[:controller].to_s == "home" || params[:controller].to_s == "users"
-              = yield
-            - else
-              = render 'layouts/messages'
-              = yield
-        - else
-          .row
-            = yield
+        = render 'layouts/messages'
+        = yield
+        / - if current_user
+        /   .row
+        /     = render 'layouts/messages'
+        /     - if params[:controller].include?("devise/") || params[:controller].to_s == "home" || params[:controller].to_s == "users"
+        /       = yield
+        /     - else
+        /       = yield
+        / - else
+        /   .row
+        /     = yield
         / /.row
       / /.container
     / /.section

@@ -6,7 +6,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "vuongtieulong02@gmail.com"
 
-  config.secret_key = '981e81b4117829ced6b4dcb82c24673c0c83e73127ec7dad33b0d9da88a2a62c7f73f79527bf6a94d2e8787d32ad009ac524b8a0b6db80478c41ebc2ddd108e7'
+  #config.secret_key = '981e81b4117829ced6b4dcb82c24673c0c83e73127ec7dad33b0d9da88a2a62c7f73f79527bf6a94d2e8787d32ad009ac524b8a0b6db80478c41ebc2ddd108e7'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -128,7 +128,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length. Default is 8..128.
-  config.password_length = 8..128
+  config.password_length = 6..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -223,7 +223,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require "omniauth-facebook"
-  config.omniauth :facebook, OMNIAUTH_PROVIDERS["facebook"][:app_id], OMNIAUTH_PROVIDERS["facebook"][:app_secret], :scope => 'email,user_birthday,user_interests,user_likes,user_location,user_checkins,user_events,friends_birthday,friends_likes,friends_location,friends_checkins,publish_stream,read_stream,export_stream,read_friendlists'
+  config.omniauth :facebook, OMNIAUTH_PROVIDERS["facebook"][:app_id], OMNIAUTH_PROVIDERS["facebook"][:app_secret], :scope => 'email,friends_likes,publish_actions,read_stream,read_friendlists'
 
   require "omniauth-twitter"
   config.omniauth :twitter, OMNIAUTH_PROVIDERS["twitter"][:app_id], OMNIAUTH_PROVIDERS["twitter"][:app_secret]

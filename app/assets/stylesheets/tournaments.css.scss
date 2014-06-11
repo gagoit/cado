@@ -10,4 +10,11 @@
     background-position: center top;
     -webkit-background-size: 1400px 155px;
   }
+
+  .row.teams {
+    .col-sm-4{
+      height: 310px;
+      overflow: hidden;  
+    }
+  }
 }

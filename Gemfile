@@ -51,7 +51,7 @@ gem "thin", ">= 1.5.0"
 gem 'moped'
 gem "mongoid", ">= 3.1.2"
 
-gem "devise", ">= 2.2.3"
+gem "devise", "~> 2.2.1"
 gem 'cancan', '~> 1.6.7'
 
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]

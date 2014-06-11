@@ -11,8 +11,10 @@ class Team
 
   field :short_description, type: String
 
+  field :players_html, type: String
+
   attr_accessible :name, :players, :description, :short_description, :tournaments, 
-    :tournament_ids, :short_name, :main_image
+    :tournament_ids, :short_name, :main_image, :players_html
 
   has_many :team_photos
 
@@ -43,4 +45,8 @@ class Team
   # end
 
   search_in :name, :players
+
+  def matches
+    Match.any_of({:playera_id => self.id}, {:playerb_id => self.id})
+  end
 end

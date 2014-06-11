@@ -1,3 +1,4 @@
+require "open-uri"
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -46,5 +47,9 @@ class Post
   def created!(user)
   	self.created_by = user
   	self.save!
+  end
+
+  def main_image_from_url(url)
+    self.main_image = open(url)
   end
 end

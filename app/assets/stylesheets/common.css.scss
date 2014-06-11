@@ -1,5 +1,5 @@
 .section {
-  background-image: image_url("background.jpg");
+  //background-image: image_url("background.jpg");
   background-color: #fff;
   background-repeat: repeat-x;
   background-position: center -110px;
@@ -148,8 +148,9 @@
 
 /** **/
 .match-list-date {
-  margin-bottom: 40px;
+  /*margin-bottom: 40px;*/
   margin-top: 20px;
+  overflow: auto;
 
   h3 {
     color: #474747;
@@ -164,6 +165,10 @@
     width: 988px;
     height: 50px;
     display: table-cell;
+  }
+
+  .clear-grid {
+    margin-bottom: 10px;
   }
 }
 
@@ -316,8 +321,7 @@ display: table-cell;
 vertical-align: middle;
 }
 .col-xs-12 .t-n .t-nTri {
-display: none !important;
-visibility: hidden !important;
+  margin-top: 30px;
 }
 
 .col-xs-12 .t-n .t-nText {

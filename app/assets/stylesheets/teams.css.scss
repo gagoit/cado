@@ -15,3 +15,33 @@
   }
 
 }
+
+/** Show a team **/
+.team {
+  .row.players {
+    table {
+      width: 100%;
+
+      tbody tr {
+        border-top: 1px solid #ddd;
+      }
+
+      tbody td:first-child {
+        width: 50px;
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+      }
+
+      .sortcol {
+        border-bottom: 1px;
+        background: #F1F1EB;
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+      }
+    }
+  }
+}

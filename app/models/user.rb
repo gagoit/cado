@@ -50,6 +50,7 @@ class User
                                                 thumb: ["100x100#", :jpg] },
                                   convert_options: {all: ["-unsharp 0.3x0.3+5+0", "-quality 90%", "-auto-orient"]},
                                   processors: [:thumbnail] ,
+                                  default_url: "/assets/no-avatar.jpg",
                                   storage: :filesystem
 
   validates_attachment_content_type :avatar, :content_type => %w[image/png image/jpg image/jpeg image/gif]
@@ -89,7 +90,24 @@ class User
 
   validate(:on => :create) do |user|
     if !user.email.blank?
-      errors.add(:email, 'Invalid domain for email address. Email must has domain @elarion.com') unless user.email[/@elarion.com$/]
+      #errors.add(:email, 'Invalid domain for email address. Email must has domain @elarion.com') unless user.email[/@elarion.com$/]
+    end
+  end
+
+  ##
+  # Get Avatar of a User
+  ##
+  def avatar_url(style = :small)
+    if avatar_file_name
+      avatar.url(style)
+    else
+      url = avatar.url(style)
+      providers.each do |e|
+        next unless e.image_url
+
+        url = e.image_url
+      end
+      url
     end
   end
 
@@ -112,6 +130,12 @@ class User
             name: data['info']['nickname'] || "wb#{Devise.friendly_token[0,8]}"
           }
 
+          if p = Provider.where(:uid => data['uid'], provider: data['provider']).first
+            return p.user
+          else
+            return User.new(user_fb)
+          end
+
           if user_fb[:email].blank?
             return nil
           elsif user = User.where(:email => user_fb[:email]).first
@@ -119,7 +143,7 @@ class User
 
           else # Create a user with a stub password. 
             user_fb[:password] = Devise.friendly_token[0,20]
-            user = User.create!(user_fb )
+            user = User.create(user_fb )
           end
 
           Provider.find_or_create(data, user)

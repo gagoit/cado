@@ -29,17 +29,17 @@
       .t.home
         .t-i.i-4
           %span.t-i-wrap
-            %img.BRA.i-4-flag.flag{:alt => "#{match.playera.name}", :src => match.playera.main_image.url(:small)}/
+            %img.BRA.i-4-flag.flag{:alt => "#{match.playera.name}", :src => match.playera.main_image}/
         .t-n
-          %span.t-nText #{match.playera.name}
-          %span.t-nTri #{match.playera.short_name}
+          %span.t-nText.hidden-xs #{match.playera.name}
+          %span.t-nTri.visible-xs #{match.playera.short_name}
       .t.away
         .t-i.i-4
           %span.t-i-wrap
-            %img.CRO.i-4-flag.flag{:alt => "#{match.playerb.name}", :src => match.playerb.main_image.url(:small)}/
+            %img.CRO.i-4-flag.flag{:alt => "#{match.playerb.name}", :src => match.playerb.main_image}/
         .t-n
-          %span.t-nText #{match.playerb.name}
-          %span.t-nTri #{match.playerb.short_name}
+          %span.t-nText.hidden-xs #{match.playerb.name}
+          %span.t-nTri.visible-xs #{match.playerb.short_name}
       .s
         .s-fixture
           .s-status             

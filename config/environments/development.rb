@@ -31,7 +31,7 @@ GagoitDocuments::Application.configure do
 
   # ActionMailer Config
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => '192.168.4.177', :port => 3003 }
+  config.action_mailer.default_url_options = { :host => '172.16.12.31', :port => 3000 }
   config.action_mailer.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => 587,

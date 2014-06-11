@@ -13,11 +13,18 @@
       .description
         = raw @team.description
 
-  .row
+  .row.players
     .col-lg-12
       %h2.page-header Players
 
-      %p #{@team.players}
+      = raw @team.players_html
+
+  .row.matches
+    .col-lg-12
+      %h2.page-header Matches
+      
+      - @team.matches.each do |match|
+        = render :partial => "matches/match_in_date", :locals => {:match => match}
 
 .links
   - if can? :update, @team

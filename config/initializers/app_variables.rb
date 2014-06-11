@@ -3,8 +3,10 @@
 ##
 OMNIAUTH_PROVIDERS = {
   "facebook" => {
-    app_id: "1490809024476194",
-    app_secret: "3880c3739e1dc6091ca5e2b16a1c459f"
+    # app_id: "1490809024476194",
+    # app_secret: "3880c3739e1dc6091ca5e2b16a1c459f"
+    app_id: "328760290612092",
+    app_secret: "46222183cac71e5717bb53e7e977785b" #cado
   },
   "twitter" => {
     # app_id: "cGpTkrwQudkISCFBofxAvm9SS",

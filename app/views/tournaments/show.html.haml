@@ -33,7 +33,7 @@
       = raw @tournament.description
 
   - if @tournament.teams.length > 0
-    .row
+    .row.teams
       %h2 Teams:
 
       - @tournament.teams.each do |team|
