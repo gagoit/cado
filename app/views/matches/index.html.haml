@@ -1,4 +1,7 @@
-%h1 Matches
+%h1 
+  Matches
+  %small
+    %a{href: "##{Time.now.utc.strftime('%Y%m%d')}"} Today
 
 - if @tournament
   = render :partial => "ex_matches"

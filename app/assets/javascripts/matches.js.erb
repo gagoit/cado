@@ -30,22 +30,26 @@ var Match = {
   **/
   convert_time_to: function(btn, from_time, to_time){
     var matchs_in_date = $(btn).closest(".match-list-date");
-    
-    var time = matchs_in_date.find(".mu-m .s-date-HHmm");
-    var local_time = time.attr("data-timelocal");
-    var mytime = time.attr("data-mytime");
 
-    if (to_time == "local"){
-      time.find(".s-scoreText").text(local_time);
+    var matches = matchs_in_date.find(".col-xs-12.clear-grid");
 
-      matchs_in_date.find(".time-converter .my-time").removeClass("hidden");
-      matchs_in_date.find(".time-converter .local-time").addClass("hidden");
-    }else {
-      time.find(".s-scoreText").text(mytime);
+    matches.each(function(){
+      var time = $(this).find(".mu-m .s-date-HHmm");
+      var local_time = time.attr("data-timelocal");
+      var mytime = time.attr("data-mytime");
 
-      matchs_in_date.find(".time-converter .my-time").addClass("hidden");
-      matchs_in_date.find(".time-converter .local-time").removeClass("hidden");
-    }
+      if (to_time == "local"){
+        time.find(".s-scoreText").text(local_time);
+
+        matchs_in_date.find(".time-converter .my-time").removeClass("hidden");
+        matchs_in_date.find(".time-converter .local-time").addClass("hidden");
+      }else {
+        time.find(".s-scoreText").text(mytime);
+
+        matchs_in_date.find(".time-converter .my-time").addClass("hidden");
+        matchs_in_date.find(".time-converter .local-time").removeClass("hidden");
+      }
+    });
     
   }
   

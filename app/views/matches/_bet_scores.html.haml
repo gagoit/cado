@@ -1,0 +1,21 @@
+- bet_scores = match.bet_scores
+%h1 
+  All Bet Score for this Match: 
+  %small #{pluralize(bet_scores.length, "Bet Score") }
+%table.table.table-striped.table-bordered#table-match-bet-scores
+  %tr
+    %th Match
+    %th Score
+    %th Money
+    %th User
+    %th Created At
+
+  - bet_scores.each do |bet_score|
+    - next if bet_score.new_record?
+
+    %tr
+      %td #{match.name}
+      %td #{bet_score.score}
+      %td #{number_to_currency(bet_score.money, {precision: 0, unit: "VND "})}
+      %td #{bet_score.user.name}
+      %td #{(bet_score.created_at.localtime).strftime("%b %d, %Y - %H:%M")}

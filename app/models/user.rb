@@ -90,7 +90,7 @@ class User
 
   validate(:on => :create) do |user|
     if !user.email.blank?
-      #errors.add(:email, 'Invalid domain for email address. Email must has domain @elarion.com') unless user.email[/@elarion.com$/]
+      errors.add(:email, 'Invalid domain for email address. Email must has domain @elarion.com') unless user.email[/@elarion.com$/]
     end
   end
 

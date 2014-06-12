@@ -4,11 +4,13 @@ class BetScore
   
   field :scorea, type: Integer
   field :scoreb, type: Integer
-  field :money, type: Integer
+  field :money, type: Integer, default: 10000
+
+  field :note, type: String
 
   field :score, type: String
 
-  attr_accessible :scoreb, :scorea, :match_id, :match, :money, :user_id
+  attr_accessible :scoreb, :scorea, :match_id, :match, :money, :user_id, :note
 
   belongs_to :match
 
@@ -18,9 +20,11 @@ class BetScore
 
   validates :scorea, :scoreb, :money, :numericality => {:greater_than_or_equal_to => 0, :only_integer => true}
 
+  validates :note, :length => { :maximum => 100 }
+
   validate do 
     if money && money % 10000 != 0
-      self.errors.add(:money, "must be multiple of 10,000 VND")
+      self.errors.add(:money, "must be 10,000 VND")
     end
   end
 

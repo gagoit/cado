@@ -1,5 +1,14 @@
 .bet-scores-in-match
-  %h1 Your Bet Score for this Match:
+  %h1.match-name 
+    = link_to @match.name, @match
+
+  = render :partial => "matches/bet_scores", :locals => {:match => @match}
+
+  - @bet_scores = @match.bet_scores.by_user(current_user)
+
+  %h1 
+    Your Bet Score for this Match: 
+    %small #{pluralize(@bet_scores.length, "Bet Score") }
   %table.table.table-striped.table-bordered
     %tr
       %th Match
@@ -8,10 +17,9 @@
       %th Created At
       %th Action
 
-    - @bet_scores = @match.bet_scores.by_user(current_user)
     - @bet_scores.each do |bet_score|
       %tr
-        %td #{bet_score.match.name}
+        %td #{match.name}
         %td #{bet_score.score}
         %td #{number_to_currency(bet_score.money, {precision: 0, unit: "VND "})}
         %td #{(bet_score.created_at.localtime).strftime("%b %d, %Y - %H:%M")}
@@ -25,10 +33,16 @@
     %div.new-bet-score
       %h1 Create new Bet Score for this match:
       = bootstrap_form_for @bet_score, :url => match_bet_scores_path(@match) do |f|
-        = f.text_field :scorea, type: 'number', label: @match.playera.name
-        = f.text_field :scoreb, type: 'number', label: @match.playerb.name
-        = f.text_field :money, type: 'number', placeholder: "Money must be multiple of 10,000 VND", step: 10000
+        .col-md-4.col-sm-4
+          = f.text_field :scorea, type: 'number', label: @match.playera.name
+        .col-md-4.col-sm-4  
+          = f.text_field :scoreb, type: 'number', label: @match.playerb.name
+        .col-md-4.col-sm-4
+          = f.text_field :money, type: 'number', placeholder: "Money must be 10,000 VND", step: 10000
 
-        .actions
+        .col-md-12.col-sm-12
+          = f.text_field :note, type: 'text'
+
+        .actions.col-md-4.col-sm-4
           = f.submit 'Save', class: "btn btn-primary"
           = link_to 'Cancel', match_path(@match), class: "btn btn-danger"
